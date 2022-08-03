@@ -115,3 +115,31 @@ p{
     position: absolute;
     width: 100%;
 }
+.small{
+    width: 10vh;
+}
+.playAgain{
+    width: 25vh;
+    height: 10vh;
+    bottom: 5vh;
+    color:#019321;
+    background-color: white;
+    border-radius: 1em;
+    font-weight: 600;
+    font-size: 26px;
+    border: 4px solid black;
+}
+.words1,
+.words2{
+    color: white;
+    font-size: 5vh;
+    font-weight: 500;
+}
+.imgBig{
+width: 100%;
+height: 100%;
+}
+.imgMedium{
+    width: 60%;
+    height: 60%;
+}

@@ -7,6 +7,11 @@ const mixedButton = document.querySelector(".mixedGame");
 const plus = document.querySelector(".plus");
 const correct = document.querySelector(".correct");
 const wrong = document.querySelector(".wrong");
+const final = document.querySelector(".final");
+const medal = document.querySelector(".medal")
+const words1 = document.querySelector(".words1")
+const words2 = document.querySelector(".words2")
+const playAgain = document.querySelector(".playAgain")
 const operation = document.getElementById("operation");
 const ans1 = document.getElementById("btn1");
 const ans2 = document.getElementById("btn2");
@@ -83,7 +88,24 @@ ans4.addEventListener("click", () => {
 
 function Question(){
     if(current == totalQuestion){
-        console.log("finish")
+        console.log(score)
+        final.classList.remove("hide")
+        plus.classList.add("hide")
+        if(score == 5){
+            medal.innerHTML = `<img class = "imgBig" src = "./img/Excellent.png">`
+            words1.innerHTML = "Your Score:"
+            words2.innerHTML = "5 / 5"
+        }
+        else if(score == 4 || score == 3){
+            medal.innerHTML = `<img class = "imgBig" src = "./img/Well Done.png">`
+            words1.innerHTML = "Your Score:"
+            words2.innerHTML = score + " / 5"
+        }
+        else if(score == 2 || score == 1 || score == 0){
+            medal.innerHTML = `<img class = "imgMedium" src = "./img/You Tried.png">`
+            words1.innerHTML = "Try Again!"
+            words2.innerHTML = "Take you time to calculate the answer."
+        }
         return
     }
     current += 1;
