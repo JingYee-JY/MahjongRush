@@ -24,6 +24,10 @@ let score = 0;
 let correctAnswer;
 let totalQuestion = 0;
 
+let plusQuestions = false;
+let minusQuestions = false;
+let mixedQuestions = false;
+
 let wrongAns1;
 let wrongAns2;
 let wrongAns3;
@@ -110,12 +114,15 @@ function Question(){
         return
     }
     current += 1;
+
     questionNumber.innerHTML = "Question " + current + " / " + totalQuestion;
+    
     let firstNum = Math.floor(Math.random() * 5)
     let secondNum = Math.floor(Math.random() * 4)
     let pattern = Math.floor(Math.random() * 3)
     let firstImg;
     let secondImg;
+    
     if(pattern == 0){
         //tong
         if(firstNum == 0){
@@ -225,10 +232,6 @@ function Question(){
             firstImg = "./img/Mahjong Tile 23.png";
         }
     }
-    operation.innerHTML = `
-    <img src="${firstImg}"/>
-    <img src="./img/+.png"/>
-    <img src="${secondImg}"/>`
 
     wrongAns1 = Math.floor(Math.random() * 9);
     let wrongPattern1 = Math.floor(Math.random() * 3);
@@ -238,7 +241,53 @@ function Question(){
     let wrongPattern3 = Math.floor(Math.random() * 3);
     wrongAns4 = Math.floor(Math.random() * 9);
     let wrongPattern4 = Math.floor(Math.random() * 3);
-    correctAnswer = firstNum + secondNum;
+    if(plusQuestions == true){
+        correctAnswer = firstNum + secondNum;
+        operation.innerHTML = `
+    <img src="${firstImg}"/>
+    <img src="./img/+.png"/>
+    <img src="${secondImg}"/>`
+    }
+    else if(minusQuestions == true){
+        correctAnswer = firstNum - secondNum;
+        operation.innerHTML = `
+        <img src="${firstImg}"/>
+        <img src="./img/-.png"/>
+        <img src="${secondImg}"/>`
+        if(correctAnswer < 0){
+            console.log("swap")
+            correctAnswer = secondNum - firstNum;
+            operation.innerHTML = `
+            <img src="${secondImg}"/>
+            <img src="./img/-.png"/>
+            <img src="${firstImg}"/>`
+        }
+    }
+    else if(mixedQuestions == true){
+        let sign = Math.random() > 0.5 ? 1 : 2
+        if(sign == 1){
+            correctAnswer = firstNum + secondNum;
+        operation.innerHTML = `
+    <img src="${firstImg}"/>
+    <img src="./img/+.png"/>
+    <img src="${secondImg}"/>`
+    }
+        if(sign == 2){
+            correctAnswer = firstNum - secondNum;
+            operation.innerHTML = `
+        <img src="${firstImg}"/>
+        <img src="./img/-.png"/>
+        <img src="${secondImg}"/>`
+        }
+        if(correctAnswer < 0){
+            correctAnswer = secondNum - firstNum;
+            operation.innerHTML = `
+            <img src="${secondImg}"/>
+            <img src="./img/-.png"/>
+            <img src="${firstImg}"/>`
+        }
+    }
+    
     let correctImg;
     let wrongImg1;
     let wrongImg2;
@@ -786,6 +835,7 @@ plusButton.addEventListener("click", () => {
     totalQuestion = 5;
     current = 0;
     score = 0;
+    plusQuestions = true;
     Question();
 })
 minusButton.addEventListener("click", () => {
@@ -794,6 +844,7 @@ minusButton.addEventListener("click", () => {
     totalQuestion = 10;
     current = 0;
     score = 0;
+    minusQuestions = true;
     Question();
 })
 mixedButton.addEventListener("click", () => {
@@ -802,9 +853,13 @@ mixedButton.addEventListener("click", () => {
     totalQuestion = 20;
     current = 0;
     score = 0;
+    mixedQuestions = true;
     Question();
 })
 playAgain.addEventListener("click", () => {
     select.classList.remove("hide")
     final.classList.add("hide")
+    plusQuestions = false;
+    minusQuestions = false;
+    mixedQuestions = false;
 })
