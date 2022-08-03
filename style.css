@@ -1,0 +1,91 @@
+body{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-image: url("./Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    align-items: center;
+    overflow: hidden;
+    justify-content: center;
+}
+.plus{
+    align-content: center;
+    justify-content: center;
+}
+button{
+    width: 20vmin;
+    height: 25vh;
+}
+div{
+    font-size: 36px;
+}
+.start{
+    margin: 0;
+    padding: 3vh;
+    width: 100%;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
+.startGame{
+    width: 30vh;
+    height: 13vh;
+    bottom: 5vh;
+    color:#019321;
+    background-color: white;
+    border-radius: 1.2em;
+    font-weight: 600;
+    font-size: 35px;
+    border: 4px solid black;
+}
+.hide{
+    display: none;
+}
+img{
+    width: 15vh;
+}
+.selection{
+    margin: 0;
+    padding: 3vh;
+    width: 100%;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
+.plusGame{
+    width: 50vmin;
+    height: 13vh;
+    bottom: 5vh;
+    color:#019321;
+    background-color: white;
+    border-radius: 1.2em;
+    font-weight: 600;
+    font-size: 35px;
+    border: 4px solid black;
+}
+.minusGame{
+    width: 50vmin;
+    height: 13vh;
+    bottom: 5vh;
+    color:#019321;
+    background-color: white;
+    border-radius: 1.2em;
+    font-weight: 600;
+    font-size: 35px;
+    border: 4px solid black;
+}
+.mixedGame{
+    width: 50vmin;
+    height: 13vh;
+    bottom: 5vh;
+    color:#019321;
+    background-color: white;
+    border-radius: 1.2em;
+    font-weight: 600;
+    font-size: 35px;
+    border: 4px solid black;
+}
