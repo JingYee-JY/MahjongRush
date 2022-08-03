@@ -35,12 +35,12 @@ div{
     justify-content: center;
 }
 .startGame{
-    width: 30vh;
-    height: 13vh;
+    width: 25vh;
+    height: 10vh;
     bottom: 5vh;
     color:#019321;
     background-color: white;
-    border-radius: 1.2em;
+    border-radius: 1em;
     font-weight: 600;
     font-size: 35px;
     border: 4px solid black;
@@ -49,7 +49,7 @@ div{
     display: none;
 }
 img{
-    width: 15vh;
+    width: 12vh;
 }
 .selection{
     margin: 0;
@@ -60,8 +60,8 @@ img{
     justify-content: center;
 }
 .plusGame{
-    width: 50vmin;
-    height: 13vh;
+    width: 25vh;
+    height: 10vh;
     bottom: 5vh;
     color:#019321;
     background-color: white;
@@ -71,8 +71,8 @@ img{
     border: 4px solid black;
 }
 .minusGame{
-    width: 50vmin;
-    height: 13vh;
+    width: 25vh;
+    height: 10vh;
     bottom: 5vh;
     color:#019321;
     background-color: white;
@@ -82,8 +82,8 @@ img{
     border: 4px solid black;
 }
 .mixedGame{
-    width: 50vmin;
-    height: 13vh;
+    width: 25vh;
+    height: 10vh;
     bottom: 5vh;
     color:#019321;
     background-color: white;
