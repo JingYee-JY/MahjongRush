@@ -5,15 +5,89 @@ const plusButton = document.querySelector(".plusGame");
 const minusButton = document.querySelector(".minusGame");
 const mixedButton = document.querySelector(".mixedGame");
 const plus = document.querySelector(".plus");
+const correct = document.querySelector(".correct");
+const wrong = document.querySelector(".wrong");
 const operation = document.getElementById("operation");
 const ans1 = document.getElementById("btn1");
 const ans2 = document.getElementById("btn2");
 const ans3 = document.getElementById("btn3");
 const ans4 = document.getElementById("btn4");
+const questionNumber = document.querySelector(".questionNumber");
 
 let current = 0;
+let score = 0;
+let correctAnswer;
+let totalQuestion = 0;
+
+let wrongAns1;
+let wrongAns2;
+let wrongAns3;
+let wrongAns4;
+
+ans1.addEventListener("click", () => {
+    if(wrongAns1 == correctAnswer){
+        score += 1;
+        correct.classList.remove("hide")
+    }
+    else{
+        wrong.classList.remove("hide")
+    }
+    let delay = setTimeout(() => {
+        Question()
+        correct.classList.add("hide")
+        wrong.classList.add("hide")
+      }, 1000);
+})
+ans2.addEventListener("click", () => {
+    if(wrongAns2 == correctAnswer){
+        score += 1;
+        correct.classList.remove("hide")
+    }
+    else{
+        wrong.classList.remove("hide")
+    }
+    let delay = setTimeout(() => {
+        Question()
+        correct.classList.add("hide")
+        wrong.classList.add("hide")
+      }, 1000);
+})
+ans3.addEventListener("click", () => {
+    if(wrongAns3 == correctAnswer){
+        score += 1;
+        correct.classList.remove("hide")
+    }
+    else{
+        wrong.classList.remove("hide")
+    }
+    let delay = setTimeout(() => {
+        Question()
+        correct.classList.add("hide")
+        wrong.classList.add("hide")
+      }, 1000);
+})
+ans4.addEventListener("click", () => {
+    if(wrongAns4 == correctAnswer){
+        score += 1;
+        correct.classList.remove("hide")
+    }
+    else{
+        wrong.classList.remove("hide")
+    }
+    let delay = setTimeout(() => {
+        Question()
+        correct.classList.add("hide")
+        wrong.classList.add("hide")
+      }, 1000);
+})
 
 function Question(){
+    if(current == totalQuestion){
+        console.log("finish")
+        return
+    }
+    current += 1;
+    questionNumber.innerHTML = "Question " + current + " / " + totalQuestion;
     let firstNum = Math.floor(Math.random() * 5)
     let secondNum = Math.floor(Math.random() * 4)
     let pattern = Math.floor(Math.random() * 3)
@@ -133,15 +207,15 @@ function Question(){
     <img src="./img/+.png"/>
     <img src="${secondImg}"/>`
 
-    let wrongAns1 = Math.floor(Math.random() * 9);
+    wrongAns1 = Math.floor(Math.random() * 9);
     let wrongPattern1 = Math.floor(Math.random() * 3);
-    let wrongAns2 = Math.floor(Math.random() * 9);
+    wrongAns2 = Math.floor(Math.random() * 9);
     let wrongPattern2 = Math.floor(Math.random() * 3);
-    let wrongAns3 = Math.floor(Math.random() * 9);
+    wrongAns3 = Math.floor(Math.random() * 9);
     let wrongPattern3 = Math.floor(Math.random() * 3);
-    let wrongAns4 = Math.floor(Math.random() * 9);
+    wrongAns4 = Math.floor(Math.random() * 9);
     let wrongPattern4 = Math.floor(Math.random() * 3);
-    let correctAnswer = firstNum + secondNum;
+    correctAnswer = firstNum + secondNum;
     let correctImg;
     let wrongImg1;
     let wrongImg2;
@@ -665,8 +739,18 @@ function Question(){
     let correctAnswerIndex = Math.floor(Math.random() * 4)+1;
     let correctAnswerId = "btn" + correctAnswerIndex;
     document.getElementById(correctAnswerId).innerHTML = `<img src="${correctImg}"/>`
-    console.log(pattern, correctAnswer)
-    console.log(correctAnswerId)
+    if(correctAnswerIndex == 1){
+        wrongAns1 = correctAnswer
+    }
+    if(correctAnswerIndex == 2){
+        wrongAns2 = correctAnswer
+    }
+    if(correctAnswerIndex == 3){
+        wrongAns3 = correctAnswer
+    }
+    if(correctAnswerIndex == 4){
+        wrongAns4 = correctAnswer
+    }
 }
 
 startButton.addEventListener("click", () => {
@@ -676,5 +760,7 @@ startButton.addEventListener("click", () => {
 plusButton.addEventListener("click", () => {
     select.classList.add("hide")
     plus.classList.remove("hide")
+    totalQuestion = 5;
+    current = 0;
     Question();
 })

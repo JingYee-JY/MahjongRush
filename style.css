@@ -47,6 +47,7 @@ div{
 }
 .hide{
     display: none;
+    visibility: hidden;
 }
 img{
     width: 12vh;
@@ -100,4 +101,17 @@ img{
 p{
     margin: 0px;
     height: 3vh;
+}
+.correct,
+.wrong{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tick,
+.cross{
+    bottom: 10vh;
+    position: absolute;
+    width: 100%;
 }
