@@ -87,21 +87,22 @@ ans4.addEventListener("click", () => {
 })
 
 function Question(){
+    let pass = totalQuestion /2;
     if(current == totalQuestion){
         console.log(score)
         final.classList.remove("hide")
         plus.classList.add("hide")
-        if(score == 5){
+        if(score == totalQuestion){
             medal.innerHTML = `<img class = "imgBig" src = "./img/Excellent.png">`
             words1.innerHTML = "Your Score:"
-            words2.innerHTML = "5 / 5"
+            words2.innerHTML = score + " / " + totalQuestion
         }
-        else if(score == 4 || score == 3){
+        else if(score > pass){
             medal.innerHTML = `<img class = "imgBig" src = "./img/Well Done.png">`
             words1.innerHTML = "Your Score:"
-            words2.innerHTML = score + " / 5"
+            words2.innerHTML = score + " / " + totalQuestion
         }
-        else if(score == 2 || score == 1 || score == 0){
+        else if(score < pass){
             medal.innerHTML = `<img class = "imgMedium" src = "./img/You Tried.png">`
             words1.innerHTML = "Try Again!"
             words2.innerHTML = "Take you time to calculate the answer."
@@ -784,5 +785,26 @@ plusButton.addEventListener("click", () => {
     plus.classList.remove("hide")
     totalQuestion = 5;
     current = 0;
+    score = 0;
     Question();
+})
+minusButton.addEventListener("click", () => {
+    select.classList.add("hide")
+    plus.classList.remove("hide")
+    totalQuestion = 10;
+    current = 0;
+    score = 0;
+    Question();
+})
+mixedButton.addEventListener("click", () => {
+    select.classList.add("hide")
+    plus.classList.remove("hide")
+    totalQuestion = 20;
+    current = 0;
+    score = 0;
+    Question();
+})
+playAgain.addEventListener("click", () => {
+    select.classList.remove("hide")
+    final.classList.add("hide")
 })
