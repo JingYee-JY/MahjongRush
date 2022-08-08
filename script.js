@@ -22,6 +22,7 @@ const questionNumber = document.querySelector(".questionNumber");
 let current = 0;
 let score = 0;
 let correctAnswer;
+let pattern;
 let totalQuestion = 0;
 
 let plusQuestions = false;
@@ -33,8 +34,13 @@ let wrongAns2;
 let wrongAns3;
 let wrongAns4;
 
+let wrongPattern1
+let wrongPattern2
+let wrongPattern3
+let wrongPattern4
+
 ans1.addEventListener("click", () => {
-    if(wrongAns1 == correctAnswer){
+    if(wrongAns1 == correctAnswer && wrongPattern1 == pattern){
         score += 1;
         correct.classList.remove("hide")
     }
@@ -48,7 +54,7 @@ ans1.addEventListener("click", () => {
       }, 1000);
 })
 ans2.addEventListener("click", () => {
-    if(wrongAns2 == correctAnswer){
+    if(wrongAns2 == correctAnswer && wrongPattern2 == pattern){
         score += 1;
         correct.classList.remove("hide")
     }
@@ -62,7 +68,7 @@ ans2.addEventListener("click", () => {
       }, 1000);
 })
 ans3.addEventListener("click", () => {
-    if(wrongAns3 == correctAnswer){
+    if(wrongAns3 == correctAnswer  && wrongPattern3 == pattern){
         score += 1;
         correct.classList.remove("hide")
     }
@@ -76,7 +82,7 @@ ans3.addEventListener("click", () => {
       }, 1000);
 })
 ans4.addEventListener("click", () => {
-    if(wrongAns4 == correctAnswer){
+    if(wrongAns4 == correctAnswer  && wrongPattern4 == pattern){
         score += 1;
         correct.classList.remove("hide")
     }
@@ -117,11 +123,34 @@ function Question(){
 
     questionNumber.innerHTML = "Question " + current + " / " + totalQuestion;
 
-    let firstNum = Math.floor(Math.random() * 6)
-    let secondNum = Math.floor(Math.random() * 5)
-    let pattern = Math.floor(Math.random() * 3)
+    let firstNum; 
+    let secondNum;
+    pattern = Math.floor(Math.random() * 3)
     let firstImg;
     let secondImg;
+    let sign;
+
+    if(plus == true){
+        firstNum = Math.floor(Math.random() * 6)
+        secondNum = Math.floor(Math.random() * 5)
+    }
+    else if(minusQuestions == true){
+        firstNum = Math.floor(Math.random() * 10)
+        secondNum = Math.floor(Math.random() * 10)
+    }
+    else if(mixedQuestions == true){
+        sign = Math.random() > 0.5 ? 1 : 2
+        if(sign == 1){
+            firstNum = Math.floor(Math.random() * 6)
+            secondNum = Math.floor(Math.random() * 5)
+        }
+        if(sign == 2){
+            firstNum = Math.floor(Math.random() * 10)
+            secondNum = Math.floor(Math.random() * 10)
+        }
+    }
+    console.log("first",firstNum, pattern)
+    console.log("second",secondNum, pattern)
     
     if(firstNum == 0){
         firstImg = "./img/Mahjong Tile 29.png";
@@ -159,6 +188,33 @@ function Question(){
         if(firstNum == 5){
             firstImg = "./img/Mahjong Tile 5.png";
         }
+        if(secondNum == 5){
+            secondImg = "./img/Mahjong Tile 5.png";
+        }
+        if(firstNum == 6){
+            firstImg = "./img/Mahjong Tile 6.png";
+        }
+        if(secondNum == 6){
+            secondImg = "./img/Mahjong Tile 6.png";
+        }
+        if(firstNum == 7){
+            firstImg = "./img/Mahjong Tile 7.png";
+        }
+        if(secondNum == 7){
+            secondImg = "./img/Mahjong Tile 7.png";
+        }
+        if(firstNum == 8){
+            firstImg = "./img/Mahjong Tile 8.png";
+        }
+        if(secondNum == 8){
+            secondImg = "./img/Mahjong Tile 8.png";
+        }
+        if(firstNum == 9){
+            firstImg = "./img/Mahjong Tile 9.png";
+        }
+        if(secondNum == 9){
+            secondImg = "./img/Mahjong Tile 9.png";
+        }
     }
     if(pattern == 1)
     {
@@ -190,6 +246,33 @@ function Question(){
         if(firstNum == 5){
             firstImg = "./img/Mahjong Tile 14.png";
         }
+        if(secondNum == 5){
+            secondImg = "./img/Mahjong Tile 14.png";
+        }
+        if(firstNum == 6){
+            firstImg = "./img/Mahjong Tile 15.png";
+        }
+        if(secondNum == 6){
+            secondImg = "./img/Mahjong Tile 15.png";
+        }
+        if(firstNum == 7){
+            firstImg = "./img/Mahjong Tile 16.png";
+        }
+        if(secondNum == 7){
+            secondImg = "./img/Mahjong Tile 16.png";
+        }
+        if(firstNum == 8){
+            firstImg = "./img/Mahjong Tile 17.png";
+        }
+        if(secondNum == 8){
+            secondImg = "./img/Mahjong Tile 17.png";
+        }
+        if(firstNum == 9){
+            firstImg = "./img/Mahjong Tile 18.png";
+        }
+        if(secondNum == 9){
+            secondImg = "./img/Mahjong Tile 18.png";
+        }
     }
     if(pattern == 2){
         //shou
@@ -220,16 +303,34 @@ function Question(){
         if(firstNum == 5){
             firstImg = "./img/Mahjong Tile 23.png";
         }
+        if(secondNum == 5){
+            secondImg = "./img/Mahjong Tile 23.png";
+        }
+        if(firstNum == 6){
+            firstImg = "./img/Mahjong Tile 24.png";
+        }
+        if(secondNum == 6){
+            secondImg = "./img/Mahjong Tile 24.png";
+        }
+        if(firstNum == 7){
+            firstImg = "./img/Mahjong Tile 25.png";
+        }
+        if(secondNum == 7){
+            secondImg = "./img/Mahjong Tile 25.png";
+        }
+        if(firstNum == 8){
+            firstImg = "./img/Mahjong Tile 26.png";
+        }
+        if(secondNum == 8){
+            secondImg = "./img/Mahjong Tile 26.png";
+        }
+        if(firstNum == 9){
+            firstImg = "./img/Mahjong Tile 27.png";
+        }
+        if(secondNum == 9){
+            secondImg = "./img/Mahjong Tile 27.png";
+        }
     }
-
-    wrongAns1 = Math.floor(Math.random() * 9);
-    let wrongPattern1 = Math.floor(Math.random() * 3);
-    wrongAns2 = Math.floor(Math.random() * 9);
-    let wrongPattern2 = Math.floor(Math.random() * 3);
-    wrongAns3 = Math.floor(Math.random() * 9);
-    let wrongPattern3 = Math.floor(Math.random() * 3);
-    wrongAns4 = Math.floor(Math.random() * 9);
-    let wrongPattern4 = Math.floor(Math.random() * 3);
     if(plusQuestions == true){
         correctAnswer = firstNum + secondNum;
         operation.innerHTML = `
@@ -253,7 +354,6 @@ function Question(){
         }
     }
     else if(mixedQuestions == true){
-        let sign = Math.random() > 0.5 ? 1 : 2
         if(sign == 1){
             correctAnswer = firstNum + secondNum;
         operation.innerHTML = `
@@ -276,6 +376,15 @@ function Question(){
             <img src="${firstImg}"/>`
         }
     }
+
+    wrongAns1 = Math.floor(Math.random() * 9);
+    wrongPattern1 = Math.floor(Math.random() * 3);
+    wrongAns2 = Math.floor(Math.random() * 9);
+    wrongPattern2 = Math.floor(Math.random() * 3);
+    wrongAns3 = Math.floor(Math.random() * 9);
+    wrongPattern3 = Math.floor(Math.random() * 3);
+    wrongAns4 = Math.floor(Math.random() * 9);
+    wrongPattern4 = Math.floor(Math.random() * 3);
     
     let correctImg;
     let wrongImg1;
@@ -854,16 +963,20 @@ function Question(){
     let correctAnswerId = "btn" + correctAnswerIndex;
     document.getElementById(correctAnswerId).innerHTML = `<img src="${correctImg}"/>`
     if(correctAnswerIndex == 1){
-        wrongAns1 = correctAnswer
+        wrongAns1 = correctAnswer;
+        wrongPattern1 = pattern;
     }
     if(correctAnswerIndex == 2){
-        wrongAns2 = correctAnswer
+        wrongAns2 = correctAnswer;
+        wrongPattern2 = pattern;
     }
     if(correctAnswerIndex == 3){
-        wrongAns3 = correctAnswer
+        wrongAns3 = correctAnswer;
+        wrongPattern3 = pattern;
     }
     if(correctAnswerIndex == 4){
-        wrongAns4 = correctAnswer
+        wrongAns4 = correctAnswer;
+        wrongPattern4 = pattern;
     }
 }
 

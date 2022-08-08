@@ -42,7 +42,7 @@ div{
     background-color: white;
     border-radius: 1em;
     font-weight: 600;
-    font-size: 35px;
+    font-size: 6vh;
     border: 4px solid black;
 }
 .hide{
@@ -68,7 +68,7 @@ img{
     background-color: white;
     border-radius: 1.2em;
     font-weight: 600;
-    font-size: 35px;
+    font-size: 6vh;
     border: 4px solid black;
 }
 .minusGame{
@@ -79,7 +79,7 @@ img{
     background-color: white;
     border-radius: 1.2em;
     font-weight: 600;
-    font-size: 35px;
+    font-size: 6vh;
     border: 4px solid black;
 }
 .mixedGame{
@@ -90,7 +90,7 @@ img{
     background-color: white;
     border-radius: 1.2em;
     font-weight: 600;
-    font-size: 35px;
+    font-size: 6vh;
     border: 4px solid black;
 }
 .instruction{
@@ -113,7 +113,7 @@ p{
 .cross{
     bottom: 10vh;
     position: absolute;
-    width: 100%;
+    width: 45vh;
 }
 .small{
     width: 10vh;
