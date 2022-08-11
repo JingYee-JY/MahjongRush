@@ -130,7 +130,7 @@ function Question(){
     let secondImg;
     let sign;
 
-    if(plus == true){
+    if(plusQuestions == true){
         firstNum = Math.floor(Math.random() * 6)
         secondNum = Math.floor(Math.random() * 5)
     }
