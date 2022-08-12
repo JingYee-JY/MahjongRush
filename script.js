@@ -377,13 +377,13 @@ function Question(){
         }
     }
 
-    wrongAns1 = Math.floor(Math.random() * 9);
+    wrongAns1 = Math.floor(Math.random() * 10);
     wrongPattern1 = Math.floor(Math.random() * 3);
-    wrongAns2 = Math.floor(Math.random() * 9);
+    wrongAns2 = Math.floor(Math.random() * 10);
     wrongPattern2 = Math.floor(Math.random() * 3);
-    wrongAns3 = Math.floor(Math.random() * 9);
+    wrongAns3 = Math.floor(Math.random() * 10);
     wrongPattern3 = Math.floor(Math.random() * 3);
-    wrongAns4 = Math.floor(Math.random() * 9);
+    wrongAns4 = Math.floor(Math.random() * 10);
     wrongPattern4 = Math.floor(Math.random() * 3);
     
     let correctImg;
@@ -393,38 +393,38 @@ function Question(){
     let wrongImg4;
 
     if(wrongAns1 == wrongAns2 && wrongPattern1 == wrongPattern2){
-        wrongAns1 = Math.floor(Math.random() * 9);
-        wrongAns2 = Math.floor(Math.random() * 9);
+        wrongAns1 = Math.floor(Math.random() * 10);
+        wrongAns2 = Math.floor(Math.random() * 10);
     }
     if(wrongAns1 == wrongAns3 && wrongPattern1 == wrongPattern3){
-        wrongAns1 = Math.floor(Math.random() * 9);
-        wrongAns3 = Math.floor(Math.random() * 9);
+        wrongAns1 = Math.floor(Math.random() * 10);
+        wrongAns3 = Math.floor(Math.random() * 10);
     }
     if(wrongAns1 == wrongAns4 && wrongPattern1 == wrongPattern4){
-        wrongAns1 = Math.floor(Math.random() * 9);
-        wrongAns4 = Math.floor(Math.random() * 9);
+        wrongAns1 = Math.floor(Math.random() * 10);
+        wrongAns4 = Math.floor(Math.random() * 10);
     }
     if(wrongAns2 == wrongAns3 && wrongPattern2 == wrongPattern3){
-        wrongAns2 = Math.floor(Math.random() * 9);
-        wrongAns3 = Math.floor(Math.random() * 9);
+        wrongAns2 = Math.floor(Math.random() * 10);
+        wrongAns3 = Math.floor(Math.random() * 10);
     }
     if(wrongAns2 == wrongAns4 && wrongPattern2 == wrongPattern4){
-        wrongAns2 = Math.floor(Math.random() * 9);
-        wrongAns4 = Math.floor(Math.random() * 9);
+        wrongAns2 = Math.floor(Math.random() * 10);
+        wrongAns4 = Math.floor(Math.random() * 10);
     }
     if(wrongAns3 == wrongAns4 && wrongPattern3 == wrongPattern4){
-        wrongAns3 = Math.floor(Math.random() * 9);
-        wrongAns4 = Math.floor(Math.random() * 9);
+        wrongAns3 = Math.floor(Math.random() * 10);
+        wrongAns4 = Math.floor(Math.random() * 10);
     }
     
     if(wrongAns1 == correctAnswer && wrongPattern1 == pattern){
-        wrongAns1 = Math.floor(Math.random() * 9);
+        wrongAns1 = Math.floor(Math.random() * 10);
     }
     if(wrongAns2 == correctAnswer && wrongPattern2 == pattern){
-        wrongAns2 = Math.floor(Math.random() * 9);
+        wrongAns2 = Math.floor(Math.random() * 10);
     }
     if(wrongAns3 == correctAnswer && wrongPattern3 == pattern){
-        wrongAns3 = Math.floor(Math.random() * 9);
+        wrongAns3 = Math.floor(Math.random() * 10);
     }
     if(wrongAns4 == correctAnswer && wrongPattern4 == pattern){
         wrongAns4 = Math.floor(Math.random() * 9);
@@ -432,34 +432,34 @@ function Question(){
 
     if(wrongAns1 == 0 || wrongAns2 == 0 || wrongAns3 == 0 || wrongAns4 == 0){
         if(wrongAns1 == wrongAns2){
-            wrongAns1 = Math.floor(Math.random() * 9);
-            wrongAns2 = Math.floor(Math.random() * 9);
+            wrongAns1 = Math.floor(Math.random() * 10);
+            wrongAns2 = Math.floor(Math.random() * 10);
         }
         if(wrongAns1 == wrongAns3){
-            wrongAns1 = Math.floor(Math.random() * 9);
-            wrongAns3 = Math.floor(Math.random() * 9);
+            wrongAns1 = Math.floor(Math.random() * 10);
+            wrongAns3 = Math.floor(Math.random() * 10);
         }
         if(wrongAns1 == wrongAns4){
-            wrongAns1 = Math.floor(Math.random() * 9);
-            wrongAns4 = Math.floor(Math.random() * 9);
+            wrongAns1 = Math.floor(Math.random() * 10);
+            wrongAns4 = Math.floor(Math.random() * 10);
         }
         if(wrongAns2 == wrongAns3){
-            wrongAns2 = Math.floor(Math.random() * 9);
-            wrongAns3 = Math.floor(Math.random() * 9);
+            wrongAns2 = Math.floor(Math.random() * 10);
+            wrongAns3 = Math.floor(Math.random() * 10);
         }
         if(wrongAns2 == wrongAns4){
-            wrongAns2 = Math.floor(Math.random() * 9);
-            wrongAns4 = Math.floor(Math.random() * 9);
+            wrongAns2 = Math.floor(Math.random() * 10);
+            wrongAns4 = Math.floor(Math.random() * 10);
         }
         if(wrongAns3 == wrongAns4){
-            wrongAns1 = Math.floor(Math.random() * 9);
-            wrongAns2 = Math.floor(Math.random() * 9);
+            wrongAns1 = Math.floor(Math.random() * 10);
+            wrongAns2 = Math.floor(Math.random() * 10);
         }
         if(wrongAns1 == correctAnswer){
-            wrongAns1 = Math.floor(Math.random() * 9);
+            wrongAns1 = Math.floor(Math.random() * 10);
         }
         if(wrongAns2 == correctAnswer){
-            wrongAns2 = Math.floor(Math.random() * 9);
+            wrongAns2 = Math.floor(Math.random() * 10);
         }
         if(wrongAns3 == correctAnswer){
             wrongAns3 = Math.floor(Math.random() * 9);
