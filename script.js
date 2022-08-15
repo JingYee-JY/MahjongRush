@@ -4,7 +4,7 @@ const select = document.querySelector(".selection");
 const plusButton = document.querySelector(".plusGame");
 const minusButton = document.querySelector(".minusGame");
 const mixedButton = document.querySelector(".mixedGame");
-const plus = document.querySelector(".plus");
+const plus = document.querySelector(".game");
 const correct = document.querySelector(".correct");
 const wrong = document.querySelector(".wrong");
 const final = document.querySelector(".final");
@@ -17,13 +17,18 @@ const ans1 = document.getElementById("btn1");
 const ans2 = document.getElementById("btn2");
 const ans3 = document.getElementById("btn3");
 const ans4 = document.getElementById("btn4");
+const confirm = document.querySelector(".confrimButton");
+const next = document.querySelector(".nextButton");
 const questionNumber = document.querySelector(".questionNumber");
 
 let current = 0;
 let score = 0;
 let correctAnswer;
 let pattern;
+let choice;
+let choicePattern;
 let totalQuestion = 0;
+let choosenAnswer
 
 let plusQuestions = false;
 let minusQuestions = false;
@@ -34,66 +39,164 @@ let wrongAns2;
 let wrongAns3;
 let wrongAns4;
 
+let wrongImg1;
+let wrongImg2;
+let wrongImg3;
+let wrongImg4;
+
 let wrongPattern1
 let wrongPattern2
 let wrongPattern3
 let wrongPattern4
 
 ans1.addEventListener("click", () => {
-    if(wrongAns1 == correctAnswer && wrongPattern1 == pattern){
-        score += 1;
-        correct.classList.remove("hide")
+    if(choosenAnswer == false){
+        ans2.style.backgroundImage = "none"
+        ans3.style.backgroundImage = "none"
+        ans4.style.backgroundImage = "none"
+        ans1.style.backgroundImage = "url('./img/selecttile.png')"
+        ans1.style.backgroundSize = "contain"
+        ans1.style.backgroundRepeat = "no-repeat"
+        choice = wrongAns1
+        choicePattern = wrongPattern1
     }
-    else{
-        wrong.classList.remove("hide")
-    }
-    let delay = setTimeout(() => {
-        Question()
-        correct.classList.add("hide")
-        wrong.classList.add("hide")
-      }, 1000);
 })
 ans2.addEventListener("click", () => {
-    if(wrongAns2 == correctAnswer && wrongPattern2 == pattern){
-        score += 1;
-        correct.classList.remove("hide")
+    if(choosenAnswer == false){
+    ans1.style.backgroundImage = "none"
+    ans3.style.backgroundImage = "none"
+    ans4.style.backgroundImage = "none"
+    ans2.style.backgroundImage = "url('./img/selecttile.png')"
+    ans2.style.backgroundSize = "contain"
+    ans2.style.backgroundRepeat = "no-repeat"
+    choice = wrongAns2
+    choicePattern = wrongPattern2
     }
-    else{
-        wrong.classList.remove("hide")
-    }
-    let delay = setTimeout(() => {
-        Question()
-        correct.classList.add("hide")
-        wrong.classList.add("hide")
-      }, 1000);
 })
 ans3.addEventListener("click", () => {
-    if(wrongAns3 == correctAnswer  && wrongPattern3 == pattern){
-        score += 1;
-        correct.classList.remove("hide")
+    if(choosenAnswer == false){
+    ans1.style.backgroundImage = "none"
+    ans2.style.backgroundImage = "none"
+    ans4.style.backgroundImage = "none"
+    ans3.style.backgroundImage = "url('./img/selecttile.png')"
+    ans3.style.backgroundSize = "contain"
+    ans3.style.backgroundRepeat = "no-repeat"
+    choice = wrongAns3
+    choicePattern = wrongPattern3
     }
-    else{
-        wrong.classList.remove("hide")
-    }
-    let delay = setTimeout(() => {
-        Question()
-        correct.classList.add("hide")
-        wrong.classList.add("hide")
-      }, 1000);
 })
 ans4.addEventListener("click", () => {
-    if(wrongAns4 == correctAnswer  && wrongPattern4 == pattern){
+    if(choosenAnswer == false){
+    ans1.style.backgroundImage = "none"
+    ans2.style.backgroundImage = "none"
+    ans3.style.backgroundImage = "none"
+    ans4.style.backgroundImage = "url('./img/selecttile.png')"
+    ans4.style.backgroundSize = "contain"
+    ans4.style.backgroundRepeat = "no-repeat"
+    choice = wrongAns4
+    choicePattern = wrongPattern4
+    }
+})
+confirm.addEventListener("click", () => {
+    if(choice == null  && choicePattern == null){
+        return
+    }
+    if(choice == correctAnswer  && choicePattern == pattern){
         score += 1;
-        correct.classList.remove("hide")
+        if(choice == wrongAns1  && choicePattern == wrongPattern1){
+            ans1.innerHTML=`
+            <img class="overlay" src="./img/Correct.png">
+            <img src="${wrongImg1}"></div>`
+        }
+        if(choice == wrongAns2 && choicePattern == wrongPattern2){
+            ans2.innerHTML=`
+            <img class="overlay" src="./img/Correct.png">
+            <img src="${wrongImg2}"></div>`
+        }
+        if(choice == wrongAns3 && choicePattern == wrongPattern3){
+            ans3.innerHTML=`
+            <img class="overlay" src="./img/Correct.png">
+            <img src="${wrongImg3}"></div>`
+
+        }
+        if(choice == wrongAns4 && choicePattern == wrongPattern4){
+            ans4.innerHTML=`
+            <img class="overlay" src="./img/Correct.png">
+            <img src="${wrongImg4}"></div>`
+        }
     }
-    else{
-        wrong.classList.remove("hide")
-    }
-    let delay = setTimeout(() => {
-        Question()
-        correct.classList.add("hide")
-        wrong.classList.add("hide")
-      }, 1000);
+        else{
+            console.log("wrong")
+            if(choice == wrongAns1 && choicePattern == wrongPattern1){
+                ans1.innerHTML=`
+            <img class="overlay" src="./img/wrong.png">
+            <img src="${wrongImg1}"></div>`
+            ans1.style.backgroundImage = "url('./img/wrong.png')"
+            }
+            if(choice == wrongAns2 && choicePattern == wrongPattern2){
+                ans2.innerHTML=`
+            <img class="overlay" src="./img/wrong.png">
+            <img src="${wrongImg2}"></div>`
+            ans2.style.backgroundImage = "url('./img/wrong.png')"
+            }
+            if(choice == wrongAns3 && choicePattern == wrongPattern3){
+                ans3.innerHTML=`
+            <img class="overlay" src="./img/wrong.png">
+            <img src="${wrongImg3}"></div>`
+            ans3.style.backgroundImage = "url('./img/wrong.png')"
+            }
+            if(choice == wrongAns4 && choicePattern == wrongPattern4){
+                ans4.innerHTML=`
+            <img class="overlay" src="./img/wrong.png">
+            <img src="${wrongImg4}"></div>`
+            ans4.style.backgroundImage = "url('./img/wrong.png')"
+            }
+            if(correctAnswer == wrongAns1 && pattern == wrongPattern1){
+                ans1.innerHTML=`
+            <img class="overlay" src="./img/Correct.png">
+            <img src="${wrongImg1}"></div>`
+            ans1.style.backgroundImage = "url('./img/selecttile.png')"
+            ans1.style.backgroundSize = "contain"
+            ans1.style.backgroundRepeat = "no-repeat"
+            }
+            if(correctAnswer == wrongAns2 && pattern == wrongPattern2){
+                ans2.innerHTML=`
+            <img class="overlay" src="./img/Correct.png">
+            <img src="${wrongImg2}"></div>`
+            ans2.style.backgroundImage = "url('./img/selecttile.png')"
+            ans2.style.backgroundSize = "contain"
+            ans2.style.backgroundRepeat = "no-repeat"
+            }
+            if(correctAnswer == wrongAns3 && pattern == wrongPattern3){
+                ans3.innerHTML=`
+            <img class="overlay" src="./img/Correct.png">
+            <img src="${wrongImg3}"></div>`
+            ans3.style.backgroundImage = "url('./img/selecttile.png')"
+            ans3.style.backgroundSize = "contain"
+            ans3.style.backgroundRepeat = "no-repeat"
+            }
+            if(correctAnswer == wrongAns4 && pattern == wrongPattern4){
+                ans4.innerHTML=`
+            <img class="overlay" src="./img/Correct.png">
+            <img src="${wrongImg4}"></div>`
+            ans4.style.backgroundImage = "url('./img/selecttile.png')"
+            ans4.style.backgroundSize = "contain"
+            ans4.style.backgroundRepeat = "no-repeat"
+            }
+        }
+        choosenAnswer = true
+        confirm.classList.add("hide")
+        next.classList.remove("hide")
+    })
+next.addEventListener("click", () => {
+    choosenAnswer = false;
+    ans1.style.backgroundImage = "none"
+    ans2.style.backgroundImage = "none"
+    ans3.style.backgroundImage = "none"
+    ans4.style.backgroundImage = "none"
+    Question()
+    confirm.classList.remove("hide")
+    next.classList.add("hide")
 })
 
 function Question(){
@@ -121,7 +224,7 @@ function Question(){
     }
     current += 1;
 
-    questionNumber.innerHTML = "Question " + current + " / " + totalQuestion;
+    questionNumber.innerHTML = current + " / " + totalQuestion;
 
     let firstNum; 
     let secondNum;
@@ -387,11 +490,6 @@ function Question(){
     wrongPattern4 = Math.floor(Math.random() * 3);
     
     let correctImg;
-    let wrongImg1;
-    let wrongImg2;
-    let wrongImg3;
-    let wrongImg4;
-
     if(wrongAns1 == wrongAns2 && wrongPattern1 == wrongPattern2){
         wrongAns1 = Math.floor(Math.random() * 10);
         wrongAns2 = Math.floor(Math.random() * 10);
@@ -965,18 +1063,22 @@ function Question(){
     if(correctAnswerIndex == 1){
         wrongAns1 = correctAnswer;
         wrongPattern1 = pattern;
+        wrongImg1 = correctImg;
     }
     if(correctAnswerIndex == 2){
         wrongAns2 = correctAnswer;
         wrongPattern2 = pattern;
+        wrongImg2 = correctImg;
     }
     if(correctAnswerIndex == 3){
         wrongAns3 = correctAnswer;
         wrongPattern3 = pattern;
+        wrongImg3 = correctImg;
     }
     if(correctAnswerIndex == 4){
         wrongAns4 = correctAnswer;
         wrongPattern4 = pattern;
+        wrongImg4 = correctImg;
     }
 }
 
@@ -991,6 +1093,7 @@ plusButton.addEventListener("click", () => {
     current = 0;
     score = 0;
     plusQuestions = true;
+    choosenAnswer = false
     Question();
 })
 minusButton.addEventListener("click", () => {
@@ -1000,6 +1103,7 @@ minusButton.addEventListener("click", () => {
     current = 0;
     score = 0;
     minusQuestions = true;
+    choosenAnswer = false
     Question();
 })
 mixedButton.addEventListener("click", () => {
@@ -1009,6 +1113,7 @@ mixedButton.addEventListener("click", () => {
     current = 0;
     score = 0;
     mixedQuestions = true;
+    choosenAnswer = false
     Question();
 })
 playAgain.addEventListener("click", () => {

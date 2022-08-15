@@ -1,97 +1,107 @@
 body{
-    display: flex;
+    background-color: #F8E7D4;
     width: 100%;
-    height: 100vh;
-    padding: 0px;
-    margin: 0px;
-    background-image: url("./Background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    text-align: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
-    justify-content: center;
+    position: fixed;
+    padding: 0;
+    margin: 0;
 }
 .plus{
     align-content: center;
     justify-content: center;
 }
 button{
-    height: 25vh;
-    border: 0px ;
-    background-color: rgb(0, 0, 0,0);
+    background-color: rgba(255, 255, 255,0);
+    border: 0px;
 }
 div{
     font-size: 6vh;
     color: white;
     font-weight: 600;
 }
-.start{
-    margin: 0;
-    padding: 3vh;
-    width: 100%;
-    height: 90vh;
+.start,
+.selection,
+.game,
+.final{
+    position: absolute;
+    display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    place-items: center;
+    background-color: #63A86B;
+    gap: 2vh;
+    width: 100%;
+    height: 100%;
 }
-.startGame{
-    width: 25vh;
+.selection{
+    background-image: url("./img/selectionTiles.png");
+    background-position: center;
+    background-size: 55vh;
+    background-repeat: no-repeat;
+}
+.slectiontitle{
+    position: relative;
+    margin: 0%;
+    padding: 0%;
+    top: -5vh;
+    width: 35vh; 
+}
+.finaltitle{
+    position: relative;
+    margin: 0%;
+    padding: 0%;
+    width: 35vh; 
+}
+.text{
+    position: relative;
+    top: -3vh;
+    width: 20vh;
+    padding: 2.5vh;
+}
+.btn{
+    width: 40vh;
     height: 10vh;
-    bottom: 5vh;
-    color:#019321;
-    background-color: white;
-    border-radius: 1em;
-    font-weight: 600;
-    font-size: 6vh;
-    border: 4px solid black;
+}
+.top{
+    width: 100%;
+    height: 10vh;
+}
+.big{
+    width: 40vh;
+}
+.left{
+    position: absolute;
+    left: 1vh;
+    top: 1vh;
+}
+.right{
+    position: absolute;
+    right: 1vh;
+    top: 1vh;
+}
+.icon{
+    width: 7vh;
+}
+.title{
+    position: relative;
+    margin: 0%;
+    padding: 0%;
+    width: 55vh;
 }
 .hide{
     display: none;
     visibility: hidden;
 }
+.questionNumber{
+    font-family: "Lilita One";
+}
 img{
     width: 12vh;
-}
-.selection{
-    margin: 0;
-    padding: 3vh;
-    width: 100%;
-    height: 90vh;
-    align-items: center;
-    justify-content: center;
-}
-.plusGame{
-    width: 25vh;
-    height: 10vh;
-    bottom: 5vh;
-    color:#019321;
-    background-color: white;
-    border-radius: 1.2em;
-    font-weight: 600;
-    font-size: 6vh;
-    border: 4px solid black;
-}
-.minusGame{
-    width: 25vh;
-    height: 10vh;
-    bottom: 5vh;
-    color:#019321;
-    background-color: white;
-    border-radius: 1.2em;
-    font-weight: 600;
-    font-size: 6vh;
-    border: 4px solid black;
-}
-.mixedGame{
-    width: 25vh;
-    height: 10vh;
-    bottom: 5vh;
-    color:#019321;
-    background-color: white;
-    border-radius: 1.2em;
-    font-weight: 600;
-    font-size: 6vh;
-    border: 4px solid black;
 }
 .instruction{
     color: white;
@@ -108,38 +118,55 @@ p{
     justify-content: center;
     align-items: center;
 }
-
-.tick,
-.cross{
-    bottom: 10vh;
-    position: absolute;
-    width: 45vh;
-}
 .small{
     width: 10vh;
 }
-.playAgain{
-    width: 25vh;
-    height: 10vh;
-    bottom: 5vh;
-    color:#019321;
-    background-color: white;
-    border-radius: 1em;
-    font-weight: 600;
-    font-size: 26px;
-    border: 4px solid black;
-}
-.words1,
-.words2{
+.words1{
     color: white;
     font-size: 5vh;
     font-weight: 500;
+    font-family: "Lilita One";
+    text-align: center;
+}
+.words2{
+    color: white;
+    font-size: 3vh;
+    font-weight: 500;
+    font-family: "Lilita One";
+    text-align: center;
 }
 .imgBig{
 width: 100%;
 height: 100%;
 }
 .imgMedium{
-    width: 60%;
-    height: 60%;
+    width: 25vh;
+    height: 30vh;
+}
+.options{
+    display: grid;
+    gap: 3vh;
+    grid-template-columns: repeat(2, 18vh);
+    grid-template-rows: repeat(2, 18vh);
+    width: 40vh;
+    height:40vh;
+}
+.btn1,
+.btn2,
+.btn3,
+.btn4{
+    position: absolute;
+    display: flex;
+    width: 18vh;
+    height: 18vh;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.overlay{
+    display: flex;
+    position: absolute;
+    width:16vh;
+    height: 17vh;
 }

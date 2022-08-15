@@ -6,64 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css?family=Lilita One">
     <script src="./script.js" type="module"></script>
 </head>
 <body>
     <div class="start">
-        <div>MahJong Rush</div>
-        <br>
-        <img src="./img/Mahjong Tile 12.png">
-        <img src="./img/+.png">
-        <img src="./img/Mahjong Tile 14.png">
-        <br>
-        <img src="./img/=.png">
-        <img src="./img/Mahjong Tile 17.png">
-        <br><br><br>
-        <button class="startGame">START</button>
+        <img class="title" src="./img/startTitle.png">
+        <button class="startGame">
+            <img class="btn" src="./img/startGame.png">
+        </button>
     </div>
     <div class="selection hide">
-        <button class="plusGame">Plus</button>
-        <p></p>
-        <img class="small" src="./img/+.png">
-        <br><br>
-        <button class="minusGame">Minus</button>
-        <p></p>
-        <img class="small" src="./img/-.png">
-        <br><br>
-        <button class="mixedGame">Mixed</button>
-        <p></p>
-        <img class="small" src="./img/+.png">
-        <img class="small high" src="./img/-.png">
+        <img class="slectiontitle" src="./img/title.png">
+        <img class="text" src="./img/chooseOne.png">
+        <button class="plusGame">
+            <img class="btn" src="./img/plusGame.png">
+        </button>
+        <button class="minusGame">
+            <img class="btn" src="./img/minusGame.png">
+        </button>
+        <button class="mixedGame">
+            <img class="btn" src="./img/minusGame.png">
+        </button>
     </div>
-    <div class="plus hide">
-        <div class="questionNumber">Q0/0</div>
-        <p></p>
-        <div id="operation">0 + 0</div>
-        <p></p>
-        <div class="instruction">Choose the correct answer</div>
-    
-        <div class="correct hide">
-            <img class="tick" src="./img/Tick.png">
+    <div class="game hide">
+        <div class="top">
+            <div class="right">
+                <img class="icon" src="./img/help.png">
+                <img class="icon" src="./img/setting.png">
+            </div>
+            <div class="left">
+                <div class="questionNumber">0/0</div>
+            </div>
         </div>
-        <div class="wrong hide">
-            <img class="cross" src="./img/Cross.png">
+        <div id="operation"></div>
+        <img class="big" src="./img/text.png">
+        <div class="options">
+            <button id="btn1">0</button>
+            <button id="btn2">0</button>
+            <button id="btn3">0</button>
+            <button id="btn4">0</button>
         </div>
-        <button id="btn1">0</button>
-        <button id="btn2">0</button>
-        <br>
-        <button id="btn3">0</button>
-        <button id="btn4">0</button>
+        <button class="confrimButton">
+            <img class="btn" src="./img/confrim.png">
+        </button>
+        <button class="nextButton hide">
+            <img class="btn" src="./img/next.png">
+        </button>
     </div>
     <div class="final hide">
-        <div>MahJong Rush</div>
-        <p></p>
+        <img class="finaltitle" src="./img/title.png">
         <div class="medal"></div>
-        <p></p>
         <div class="words1"></div>
-        <p></p>
         <div class="words2"></div>
-        <p></p>
-        <button class="playAgain">Play Again</button>
+        <button class="playAgain">
+            <img class="btn" src="./img/playAgain.png">
+        </button>
     </div>
     
 </body>
