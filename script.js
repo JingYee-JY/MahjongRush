@@ -210,7 +210,7 @@ function Question(){
             words1.innerHTML = "Your Score:"
             words2.innerHTML = score + " / " + totalQuestion
         }
-        else if(score > pass){
+        else if(score >= pass){
             medal.innerHTML = `<img class = "imgBig" src = "./img/Well Done.png">`
             words1.innerHTML = "Your Score:"
             words2.innerHTML = score + " / " + totalQuestion
