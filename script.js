@@ -103,85 +103,77 @@ confirm.addEventListener("click", () => {
     }
     if(choice == correctAnswer  && choicePattern == pattern){
         score += 1;
+        ans1.style.backgroundImage = "none"
+        ans2.style.backgroundImage = "none"
+        ans3.style.backgroundImage = "none"
+        ans4.style.backgroundImage = "none"
         if(choice == wrongAns1  && choicePattern == wrongPattern1){
             ans1.innerHTML=`
-            <img class="overlay" src="./img/Correct.png">
-            <img src="${wrongImg1}"></div>`
+            <img src="${wrongImg1}"></div>
+            <img class="overlay" src="./img/Correct.png">`
         }
         if(choice == wrongAns2 && choicePattern == wrongPattern2){
             ans2.innerHTML=`
-            <img class="overlay" src="./img/Correct.png">
-            <img src="${wrongImg2}"></div>`
+            <img src="${wrongImg2}"></div>
+            <img class="overlay" src="./img/Correct.png">`
         }
         if(choice == wrongAns3 && choicePattern == wrongPattern3){
             ans3.innerHTML=`
-            <img class="overlay" src="./img/Correct.png">
-            <img src="${wrongImg3}"></div>`
+            <img src="${wrongImg3}"></div>
+            <img class="overlay" src="./img/Correct.png">`
 
         }
         if(choice == wrongAns4 && choicePattern == wrongPattern4){
             ans4.innerHTML=`
-            <img class="overlay" src="./img/Correct.png">
-            <img src="${wrongImg4}"></div>`
+            <img src="${wrongImg4}"></div>
+            <img class="overlay" src="./img/Correct.png">`
         }
     }
         else{
             console.log("wrong")
+            ans1.style.backgroundImage = "none"
+            ans2.style.backgroundImage = "none"
+            ans3.style.backgroundImage = "none"
+            ans4.style.backgroundImage = "none"
             if(choice == wrongAns1 && choicePattern == wrongPattern1){
                 ans1.innerHTML=`
-            <img class="overlay" src="./img/wrong.png">
-            <img src="${wrongImg1}"></div>`
-            ans1.style.backgroundImage = "url('./img/wrong.png')"
+                <img src="${wrongImg1}"></div>
+                <img class="overlay" src="./img/wrong.png">`
             }
             if(choice == wrongAns2 && choicePattern == wrongPattern2){
                 ans2.innerHTML=`
-            <img class="overlay" src="./img/wrong.png">
-            <img src="${wrongImg2}"></div>`
-            ans2.style.backgroundImage = "url('./img/wrong.png')"
+                <img src="${wrongImg2}"></div>
+                <img class="overlay" src="./img/wrong.png">`
             }
             if(choice == wrongAns3 && choicePattern == wrongPattern3){
                 ans3.innerHTML=`
-            <img class="overlay" src="./img/wrong.png">
-            <img src="${wrongImg3}"></div>`
-            ans3.style.backgroundImage = "url('./img/wrong.png')"
+                <img src="${wrongImg3}"></div>
+                <img class="overlay" src="./img/wrong.png">`
             }
             if(choice == wrongAns4 && choicePattern == wrongPattern4){
                 ans4.innerHTML=`
-            <img class="overlay" src="./img/wrong.png">
-            <img src="${wrongImg4}"></div>`
-            ans4.style.backgroundImage = "url('./img/wrong.png')"
+                <img src="${wrongImg4}"></div>
+                img class="overlay" src="./img/wrong.png">`
             }
             if(correctAnswer == wrongAns1 && pattern == wrongPattern1){
                 ans1.innerHTML=`
-            <img class="overlay" src="./img/Correct.png">
-            <img src="${wrongImg1}"></div>`
-            ans1.style.backgroundImage = "url('./img/selecttile.png')"
-            ans1.style.backgroundSize = "contain"
-            ans1.style.backgroundRepeat = "no-repeat"
+                <img src="${wrongImg1}"></div>
+                <img class="overlay" src="./img/Correct.png">`
             }
             if(correctAnswer == wrongAns2 && pattern == wrongPattern2){
                 ans2.innerHTML=`
-            <img class="overlay" src="./img/Correct.png">
-            <img src="${wrongImg2}"></div>`
-            ans2.style.backgroundImage = "url('./img/selecttile.png')"
-            ans2.style.backgroundSize = "contain"
-            ans2.style.backgroundRepeat = "no-repeat"
+                <img src="${wrongImg2}"></div>
+                <img class="overlay" src="./img/Correct.png">`
             }
             if(correctAnswer == wrongAns3 && pattern == wrongPattern3){
                 ans3.innerHTML=`
-            <img class="overlay" src="./img/Correct.png">
-            <img src="${wrongImg3}"></div>`
-            ans3.style.backgroundImage = "url('./img/selecttile.png')"
-            ans3.style.backgroundSize = "contain"
-            ans3.style.backgroundRepeat = "no-repeat"
+                <img src="${wrongImg3}"></div>
+                <img class="overlay" src="./img/Correct.png">`
             }
             if(correctAnswer == wrongAns4 && pattern == wrongPattern4){
                 ans4.innerHTML=`
-            <img class="overlay" src="./img/Correct.png">
-            <img src="${wrongImg4}"></div>`
-            ans4.style.backgroundImage = "url('./img/selecttile.png')"
-            ans4.style.backgroundSize = "contain"
-            ans4.style.backgroundRepeat = "no-repeat"
+                <img src="${wrongImg4}"></div>
+                <img class="overlay" src="./img/Correct.png">`
             }
         }
         choosenAnswer = true
@@ -525,7 +517,7 @@ function Question(){
         wrongAns3 = Math.floor(Math.random() * 10);
     }
     if(wrongAns4 == correctAnswer && wrongPattern4 == pattern){
-        wrongAns4 = Math.floor(Math.random() * 9);
+        wrongAns4 = Math.floor(Math.random() * 10);
     }
 
     if(wrongAns1 == 0 || wrongAns2 == 0 || wrongAns3 == 0 || wrongAns4 == 0){
@@ -560,10 +552,10 @@ function Question(){
             wrongAns2 = Math.floor(Math.random() * 10);
         }
         if(wrongAns3 == correctAnswer){
-            wrongAns3 = Math.floor(Math.random() * 9);
+            wrongAns3 = Math.floor(Math.random() * 10);
         }
         if(wrongAns4 == correctAnswer){
-            wrongAns4 = Math.floor(Math.random() * 9);
+            wrongAns4 = Math.floor(Math.random() * 10);
         }
     }
     
