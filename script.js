@@ -153,7 +153,7 @@ confirm.addEventListener("click", () => {
             if(choice == wrongAns4 && choicePattern == wrongPattern4){
                 ans4.innerHTML=`
                 <img src="${wrongImg4}"></div>
-                img class="overlay" src="./img/wrong.png">`
+                <img class="overlay" src="./img/wrong.png">`
             }
             if(correctAnswer == wrongAns1 && pattern == wrongPattern1){
                 ans1.innerHTML=`
@@ -177,19 +177,18 @@ confirm.addEventListener("click", () => {
             }
         }
         choosenAnswer = true
-        confirm.classList.add("hide")
-        next.classList.remove("hide")
+        confirm.innerHTML = ""
+        let delay = setTimeout(() => {
+            choosenAnswer = false;
+            choice = choicePattern = null
+            ans1.style.backgroundImage = "none"
+            ans2.style.backgroundImage = "none"
+            ans3.style.backgroundImage = "none"
+            ans4.style.backgroundImage = "none"
+            confirm.innerHTML = `<img class="btn" src="./img/confrim.png">`
+            Question()
+          }, 1000);
     })
-next.addEventListener("click", () => {
-    choosenAnswer = false;
-    ans1.style.backgroundImage = "none"
-    ans2.style.backgroundImage = "none"
-    ans3.style.backgroundImage = "none"
-    ans4.style.backgroundImage = "none"
-    Question()
-    confirm.classList.remove("hide")
-    next.classList.add("hide")
-})
 
 function Question(){
     let pass = totalQuestion /2;
