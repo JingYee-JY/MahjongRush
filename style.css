@@ -42,7 +42,6 @@ div{
     height: 100%;
 }
 .selection{
-    justify-content: center;
     background-image: url("./img/selectionTiles.png");
     background-position: center;
     background-size: 55vh;
@@ -177,8 +176,9 @@ height: 100%;
         justify-content: center;
       width: 100%;
     }
-    .start, .howToPlay, .game,.final{
+    .start, .selection, .game,.final{
         max-width: 400px;
+        justify-content: center;
     }
     .overlay{
         right:10px;
