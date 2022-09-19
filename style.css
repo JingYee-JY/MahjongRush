@@ -42,6 +42,7 @@ div{
     height: 100%;
 }
 .selection{
+    justify-content: center;
     background-image: url("./img/selectionTiles.png");
     background-position: center;
     background-size: 55vh;
@@ -71,16 +72,11 @@ div{
     height: 10vh;
 }
 .top{
-    width: 100%;
+    margin-top: 10px;
     height: 10vh;
 }
 .big{
     width: 40vh;
-}
-.left{
-    position: absolute;
-    left: 1vh;
-    top: 1vh;
 }
 .right{
     position: absolute;
