@@ -12,6 +12,7 @@ const medal = document.querySelector(".medal")
 const words1 = document.querySelector(".words1")
 const words2 = document.querySelector(".words2")
 const playAgain = document.querySelector(".playAgain")
+const home = document.querySelector(".home")
 const operation = document.getElementById("operation");
 const ans1 = document.getElementById("btn1");
 const ans2 = document.getElementById("btn2");
@@ -198,17 +199,17 @@ function Question(){
         plus.classList.add("hide")
         if(score == totalQuestion){
             medal.innerHTML = `<img class = "imgBig" src = "./img/Excellent.png">`
-            words1.innerHTML = "Your Score:"
+            words1.innerHTML = "Your score:"
             words2.innerHTML = score + " / " + totalQuestion
         }
         else if(score >= pass){
             medal.innerHTML = `<img class = "imgBig" src = "./img/Well Done.png">`
-            words1.innerHTML = "Your Score:"
+            words1.innerHTML = "Your score:"
             words2.innerHTML = score + " / " + totalQuestion
         }
         else if(score < pass){
             medal.innerHTML = `<img class = "imgMedium" src = "./img/You Tried.png">`
-            words1.innerHTML = "Try Again!"
+            words1.innerHTML = "Try again!"
             words2.innerHTML = "Take you time to calculate the answer."
         }
         return
@@ -1081,36 +1082,38 @@ plusButton.addEventListener("click", () => {
     select.classList.add("hide")
     plus.classList.remove("hide")
     totalQuestion = 5;
-    current = 0;
-    score = 0;
     plusQuestions = true;
-    choosenAnswer = false
-    Question();
+    began()
 })
 minusButton.addEventListener("click", () => {
     select.classList.add("hide")
     plus.classList.remove("hide")
     totalQuestion = 10;
-    current = 0;
-    score = 0;
     minusQuestions = true;
-    choosenAnswer = false
-    Question();
+    began()
 })
 mixedButton.addEventListener("click", () => {
     select.classList.add("hide")
     plus.classList.remove("hide")
     totalQuestion = 20;
-    current = 0;
-    score = 0;
     mixedQuestions = true;
-    choosenAnswer = false
-    Question();
+    began()
 })
-playAgain.addEventListener("click", () => {
-    select.classList.remove("hide")
+home.addEventListener("click", () => {
+    start.classList.remove("hide")
     final.classList.add("hide")
     plusQuestions = false;
     minusQuestions = false;
     mixedQuestions = false;
 })
+playAgain.addEventListener("click", () => {
+    plus.classList.remove("hide")
+    final.classList.add("hide")
+    began()
+})
+function began(){
+    current = 0;
+    score = 0;
+    choosenAnswer = false
+    Question();
+}

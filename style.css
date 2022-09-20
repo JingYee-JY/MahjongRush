@@ -19,9 +19,7 @@ button{
     background-color: rgba(255, 255, 255,0);
     border: 0px;
 }
-.confrimButton{
-    height: 52px;
-}
+
 div{
     font-size: 6vh;
     color: white;
@@ -33,6 +31,7 @@ div{
 .final{
     position: absolute;
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     place-items: center;
@@ -173,7 +172,6 @@ height: 100%;
 @media screen and (min-width:1200px){
     body{
         display: flex;
-        justify-content: center;
       width: 100%;
     }
     .start, .selection, .game,.final{
