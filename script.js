@@ -188,7 +188,7 @@ confirm.addEventListener("click", () => {
             ans4.style.backgroundImage = "none"
             confirm.innerHTML = `<img class="btn" src="./img/confrim.png">`
             Question()
-          }, 1000);
+          }, 2500);
     })
 
 function Question(){
@@ -199,12 +199,12 @@ function Question(){
         plus.classList.add("hide")
         if(score == totalQuestion){
             medal.innerHTML = `<img class = "imgBig" src = "./img/Excellent.png">`
-            words1.innerHTML = "Your score:"
+            words1.innerHTML = "Your score"
             words2.innerHTML = score + " / " + totalQuestion
         }
         else if(score >= pass){
             medal.innerHTML = `<img class = "imgBig" src = "./img/Well Done.png">`
-            words1.innerHTML = "Your score:"
+            words1.innerHTML = "Your score"
             words2.innerHTML = score + " / " + totalQuestion
         }
         else if(score < pass){
@@ -226,32 +226,23 @@ function Question(){
     let sign;
 
     if(plusQuestions == true){
-        firstNum = Math.floor(Math.random() * 6)
-        secondNum = Math.floor(Math.random() * 5)
+        firstNum = Math.floor((Math.random() * 5 + 1))
+        secondNum = Math.floor((Math.random() * 4 + 1))
     }
     else if(minusQuestions == true){
-        firstNum = Math.floor(Math.random() * 10)
-        secondNum = Math.floor(Math.random() * 10)
+        firstNum = Math.floor((Math.random() * 9 + 1))
+        secondNum = Math.floor((Math.random() * 9 + 1))
     }
     else if(mixedQuestions == true){
         sign = Math.random() > 0.5 ? 1 : 2
         if(sign == 1){
-            firstNum = Math.floor(Math.random() * 6)
-            secondNum = Math.floor(Math.random() * 5)
+            firstNum = Math.floor((Math.random() * 5 + 1))
+            secondNum = Math.floor((Math.random() * 4 + 1))
         }
         if(sign == 2){
-            firstNum = Math.floor(Math.random() * 10)
-            secondNum = Math.floor(Math.random() * 10)
+            firstNum = Math.floor((Math.random() * 9 + 1))
+        secondNum = Math.floor((Math.random() * 9 + 1))
         }
-    }
-    console.log("first",firstNum, pattern)
-    console.log("second",secondNum, pattern)
-    
-    if(firstNum == 0){
-        firstImg = "./img/Mahjong Tile 29.png";
-    }
-    if(secondNum == 0){
-        secondImg = "./img/Mahjong Tile 29.png";
     }
 
     if(pattern == 0){
@@ -472,109 +463,56 @@ function Question(){
         }
     }
 
-    wrongAns1 = Math.floor(Math.random() * 10);
+    wrongAns1 = Math.floor((Math.random() * 9 + 1));
     wrongPattern1 = Math.floor(Math.random() * 3);
-    wrongAns2 = Math.floor(Math.random() * 10);
+    wrongAns2 = Math.floor((Math.random() * 9 + 1));
     wrongPattern2 = Math.floor(Math.random() * 3);
-    wrongAns3 = Math.floor(Math.random() * 10);
+    wrongAns3 = Math.floor((Math.random() * 9 + 1));
     wrongPattern3 = Math.floor(Math.random() * 3);
-    wrongAns4 = Math.floor(Math.random() * 10);
+    wrongAns4 = Math.floor((Math.random() * 9 + 1));
     wrongPattern4 = Math.floor(Math.random() * 3);
     
     let correctImg;
-    if(wrongAns1 == wrongAns2 && wrongPattern1 == wrongPattern2){
-        wrongAns1 = Math.floor(Math.random() * 10);
-        wrongAns2 = Math.floor(Math.random() * 10);
-    }
-    if(wrongAns1 == wrongAns3 && wrongPattern1 == wrongPattern3){
-        wrongAns1 = Math.floor(Math.random() * 10);
-        wrongAns3 = Math.floor(Math.random() * 10);
-    }
-    if(wrongAns1 == wrongAns4 && wrongPattern1 == wrongPattern4){
-        wrongAns1 = Math.floor(Math.random() * 10);
-        wrongAns4 = Math.floor(Math.random() * 10);
-    }
-    if(wrongAns2 == wrongAns3 && wrongPattern2 == wrongPattern3){
-        wrongAns2 = Math.floor(Math.random() * 10);
-        wrongAns3 = Math.floor(Math.random() * 10);
-    }
-    if(wrongAns2 == wrongAns4 && wrongPattern2 == wrongPattern4){
-        wrongAns2 = Math.floor(Math.random() * 10);
-        wrongAns4 = Math.floor(Math.random() * 10);
-    }
-    if(wrongAns3 == wrongAns4 && wrongPattern3 == wrongPattern4){
-        wrongAns3 = Math.floor(Math.random() * 10);
-        wrongAns4 = Math.floor(Math.random() * 10);
-    }
     
-    if(wrongAns1 == correctAnswer && wrongPattern1 == pattern){
-        wrongAns1 = Math.floor(Math.random() * 10);
-    }
-    if(wrongAns2 == correctAnswer && wrongPattern2 == pattern){
-        wrongAns2 = Math.floor(Math.random() * 10);
-    }
-    if(wrongAns3 == correctAnswer && wrongPattern3 == pattern){
-        wrongAns3 = Math.floor(Math.random() * 10);
-    }
-    if(wrongAns4 == correctAnswer && wrongPattern4 == pattern){
-        wrongAns4 = Math.floor(Math.random() * 10);
-    }
-
-    if(wrongAns1 == 0 || wrongAns2 == 0 || wrongAns3 == 0 || wrongAns4 == 0){
-        if(wrongAns1 == wrongAns2){
-            wrongAns1 = Math.floor(Math.random() * 10);
-            wrongAns2 = Math.floor(Math.random() * 10);
+    for(let x=0; x < 50; x++){
+        if(wrongAns1 == wrongAns2 && wrongPattern1 == wrongPattern2){
+            wrongAns1 = Math.floor((Math.random() * 9 + 1));
+            wrongAns2 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns1 == wrongAns3){
-            wrongAns1 = Math.floor(Math.random() * 10);
-            wrongAns3 = Math.floor(Math.random() * 10);
+        if(wrongAns1 == wrongAns3 && wrongPattern1 == wrongPattern3){
+            wrongAns1 = Math.floor((Math.random() * 9 + 1));
+            wrongAns3 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns1 == wrongAns4){
-            wrongAns1 = Math.floor(Math.random() * 10);
-            wrongAns4 = Math.floor(Math.random() * 10);
+        if(wrongAns1 == wrongAns4 && wrongPattern1 == wrongPattern4){
+            wrongAns1 = Math.floor((Math.random() * 9 + 1));
+            wrongAns4 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns2 == wrongAns3){
-            wrongAns2 = Math.floor(Math.random() * 10);
-            wrongAns3 = Math.floor(Math.random() * 10);
+        if(wrongAns2 == wrongAns3 && wrongPattern2 == wrongPattern3){
+            wrongAns2 = Math.floor((Math.random() * 9 + 1));
+            wrongAns3 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns2 == wrongAns4){
-            wrongAns2 = Math.floor(Math.random() * 10);
-            wrongAns4 = Math.floor(Math.random() * 10);
+        if(wrongAns2 == wrongAns4 && wrongPattern2 == wrongPattern4){
+            wrongAns2 = Math.floor((Math.random() * 9 + 1));
+            wrongAns4 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns3 == wrongAns4){
-            wrongAns1 = Math.floor(Math.random() * 10);
-            wrongAns2 = Math.floor(Math.random() * 10);
+        if(wrongAns3 == wrongAns4 && wrongPattern3 == wrongPattern4){
+            wrongAns3 = Math.floor((Math.random() * 9 + 1));
+            wrongAns4 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns1 == correctAnswer){
-            wrongAns1 = Math.floor(Math.random() * 10);
+        
+        if(wrongAns1 == correctAnswer && wrongPattern1 == pattern){
+            wrongAns1 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns2 == correctAnswer){
-            wrongAns2 = Math.floor(Math.random() * 10);
+        if(wrongAns2 == correctAnswer && wrongPattern2 == pattern){
+            wrongAns2 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns3 == correctAnswer){
-            wrongAns3 = Math.floor(Math.random() * 10);
+        if(wrongAns3 == correctAnswer && wrongPattern3 == pattern){
+            wrongAns3 = Math.floor((Math.random() * 9 + 1));
         }
-        if(wrongAns4 == correctAnswer){
-            wrongAns4 = Math.floor(Math.random() * 10);
+        if(wrongAns4 == correctAnswer && wrongPattern4 == pattern){
+            wrongAns4 = Math.floor((Math.random() * 9 + 1));
         }
     }
-    
-
-        if(correctAnswer == 0){
-            correctImg = "./img/Mahjong Tile 29.png";
-        }
-        if(wrongAns1 == 0){
-            wrongImg1 = "./img/Mahjong Tile 29.png";
-        }
-        if(wrongAns2 == 0){
-            wrongImg2 = "./img/Mahjong Tile 29.png";
-        }
-        if(wrongAns3 == 0){
-            wrongImg3 = "./img/Mahjong Tile 29.png";
-        }
-        if(wrongAns4 == 0){
-            wrongImg4 = "./img/Mahjong Tile 29.png";
-        }
 
     if(wrongPattern4 == 0){
         //tong
@@ -1038,11 +976,6 @@ function Question(){
             wrongImg4 = "./img/Mahjong Tile 27.png";
         }
     }
-    console.log(wrongPattern1, wrongAns1)
-    console.log(wrongPattern2, wrongAns2)
-    console.log(wrongPattern3, wrongAns3)
-    console.log(wrongPattern4, wrongAns4)
-
 
     ans1.innerHTML = `<img src="${wrongImg1}"/>`
     ans2.innerHTML = `<img src="${wrongImg2}"/>`
