@@ -1032,17 +1032,12 @@ mixedButton.addEventListener("click", () => {
     mixedQuestions = true;
     began()
 })
-home.addEventListener("click", () => {
+playAgain.addEventListener("click", () => {
     start.classList.remove("hide")
     final.classList.add("hide")
     plusQuestions = false;
     minusQuestions = false;
     mixedQuestions = false;
-})
-playAgain.addEventListener("click", () => {
-    plus.classList.remove("hide")
-    final.classList.add("hide")
-    began()
 })
 function began(){
     current = 0;
