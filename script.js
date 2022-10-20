@@ -81,9 +81,9 @@ for(let x=1; x<5; x++){
     let btn = document.querySelector(`.${btnClass}`)
 
     btn.addEventListener("click", () => {
-        playClickSound()
         let data = btn.getAttribute("data")
     if(choosenAnswer == false){
+        playClickSound()
         let overlay = document.createElement("img");
         let newOverlay = null;
         if(data == correctAnswer){
