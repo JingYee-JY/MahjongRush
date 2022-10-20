@@ -1,16 +1,24 @@
-const startButton = document.querySelector(".startButton")
-const start = document.querySelector(".start")
-const game = document.querySelector(".game")
-const selection = document.querySelector(".selection")
-const easy = document.querySelector(".easy")
-const normal = document.querySelector(".normal")
-const hard = document.querySelector(".hard")
-const question = document.querySelector(".question")
-const questionNumber = document.querySelector(".game .QuestionNumber")
-const submit = document.querySelector(".submit")
-const next = document.querySelector(".next")
-const popUp = document.querySelector(".popUp");
+const startButton = document.querySelector(".startGame");
+const start = document.querySelector(".start");
+const select = document.querySelector(".selection");
+const plusButton = document.querySelector(".plusGame");
+const minusButton = document.querySelector(".minusGame");
+const mixedButton = document.querySelector(".mixedGame");
+const plus = document.querySelector(".game");
+const correct = document.querySelector(".correct");
+const wrong = document.querySelector(".wrong");
 const final = document.querySelector(".final");
+const medal = document.querySelector(".medal")
+const words1 = document.querySelector(".words1")
+const words2 = document.querySelector(".words2")
+const playAgain = document.querySelector(".playAgain")
+const operation = document.getElementById("operation");
+const ans1 = document.querySelector(".btn1");
+const ans2 = document.querySelector(".btn2");
+const ans3 = document.querySelector(".btn3");
+const ans4 = document.querySelector(".btn4");
+const next = document.querySelector(".nextButton");
+const questionNumber = document.querySelector(".questionNumber");
 const homeButton = document.querySelector(".home")
 
 const clickSound = document.getElementById("click")
@@ -18,401 +26,449 @@ const clap = document.getElementById("clap")
 const completed = document.getElementById("completed")
 const lose = document.getElementById("lose")
 
-let easyQ;
-let normalQ;
-let hardQ;
+let tongTile = [
+    "./img/Mahjong Tile 1.png",
+    "./img/Mahjong Tile 2.png",
+    "./img/Mahjong Tile 3.png",
+    "./img/Mahjong Tile 4.png",
+    "./img/Mahjong Tile 5.png",
+    "./img/Mahjong Tile 6.png",
+    "./img/Mahjong Tile 7.png",
+    "./img/Mahjong Tile 8.png",
+    "./img/Mahjong Tile 9.png"];
 
-let current;
-let totalQuestion = 3;
-let score;
-var choice1;
-var choice2;
-var choice3;
-let choosenAnswer1;
-let choosenAnswer2;
-let choosenAnswer3;
-var choosenImage1;
-var choosenImage2;
-var choosenImage3;
-let qIndex;
+let wanTile = [
+    "./img/Mahjong Tile 10.png",
+    "./img/Mahjong Tile 11.png",
+    "./img/Mahjong Tile 12.png",
+    "./img/Mahjong Tile 13.png",
+    "./img/Mahjong Tile 14.png",
+    "./img/Mahjong Tile 15.png",
+    "./img/Mahjong Tile 16.png",
+    "./img/Mahjong Tile 17.png",
+    "./img/Mahjong Tile 18.png"];
 
-var correctAnswer1;
-var correctAnswer2;
-var correctAnswer3;
-var correctImage1;
-var correctImage2;
-var correctImage3;
+let shouTile = [
+    "./img/Mahjong Tile 19.png",
+    "./img/Mahjong Tile 20.png",
+    "./img/Mahjong Tile 21.png",
+    "./img/Mahjong Tile 22.png",
+    "./img/Mahjong Tile 23.png",
+    "./img/Mahjong Tile 24.png",
+    "./img/Mahjong Tile 25.png",
+    "./img/Mahjong Tile 26.png",
+    "./img/Mahjong Tile 27.png"];
 
-let chosenBtn1 = false;
-let chosenBtn2;
-let chosenBtn3;
-let chosenBtn4;
-let chosenBtn5;
-let chosenBtn6;
-let chosenBtn7;
+var number1; 
+var number2;
+var image1;
+var image2;
 
-let tempArray = [];
-let correctDrink
+let current = 0;
+let score = 0;
+let correctAnswer;
+let correctBtn;
+let pattern;
+let totalQuestion = 0;
+let choosenAnswer
 
-let allQuestion = [
-    {name: "Kopi",image:"./img/Kopi.png",
-    length: "3", 
-    ingredient1:"1",ingredient2:"5", ingredient3:"7",
-    ingredient1Image:"./img/blackKopi.png",ingredient2Image:"./img/milk.png", ingredient3Image:"./img/sugar.png"},
+let plusQuestions = false;
+let minusQuestions = false;
+let mixedQuestions = false;
 
-    {name: "Tiao Her",image:"./img/TiaoHer.png", 
-    length: "2", 
-    ingredient1:"2",ingredient2:"0", ingredient3:"0",
-    ingredient1Image:"./img/tea.png",ingredient2Image:"", ingredient3Image:""},
+for(let x=1; x<5; x++){
+    let btnClass = "btn" + x
+    let btn = document.querySelector(`.${btnClass}`)
 
-
-    {name: "Kopi O Siew Dia Peng",image:"./img/KopiOSewDiaPeng.png",
-    length: "2",  
-    ingredient1:"1",ingredient2:"4", ingredient3:"0",
-    ingredient1Image:"./img/blackKopi.png",ingredient2Image:"./img/ice.png", ingredient3Image:""},
-
-    
-    {name: "Kopi O Kosong",image:"./img/KopiOKosong.png",
-    length: "1",  
-    ingredient1:"1",ingredient2:"0", ingredient3:"0",
-    ingredient1Image:"./img/blackKopi.png",ingredient2Image:"", ingredient3Image:""},
-
-    {name: "Teh",image:"./img/Teh.png", 
-    length: "3", 
-    ingredient1:"2",ingredient2:"5", ingredient3:"7",
-    ingredient1Image:"./img/tea.png",ingredient2Image:"./img/milk.png", ingredient3Image:"./img/sugar.png"},
-
-    {name: "Teh O",image:"./img/TehO.png", 
-    length: "2", 
-    ingredient1:"2",ingredient2:"7", ingredient3:"0",
-    ingredient1Image:"./img/tea.png",ingredient2Image:"./img/sugar.png", ingredient3Image:""},
-
-    {name: "Kopi O",image:"./img/KopiO.png", 
-    length: "2", 
-    ingredient1:"1",ingredient2:"7", ingredient3:"0",
-    ingredient1Image:"./img/blackKopi.png",ingredient2Image:"./img/sugar.png", ingredient3Image:""},
-
-    {name: "Milo Dinosaur",image:"./img/MiloDinosaur.png",
-    length: "3",  
-    ingredient1:"3",ingredient2:"4", ingredient3:"5",
-    ingredient1Image:"./img/milo.png", ingredient2Image:"./img/ice.png", ingredient3Image:"./img/milk.png"},
-
-    {name: "Yuan Yang Kosong",image:"./img/YuanYangKosong.png", 
-    length: "3", 
-    ingredient1:"1",ingredient2:"2", ingredient3:"5",
-    ingredient1Image:"./img/blackKopi.png", ingredient2Image:"./img/tea.png", ingredient3Image:"./img/milk.png"},
-
-    {name: "Kopi C",image:"./img/KopiC.png", 
-    length: "3", 
-    ingredient1:"1",ingredient2:"6", ingredient3:"7",
-    ingredient1Image:"./img/blackKopi.png", ingredient2Image:"./img/evaporatedMilk.png", ingredient3Image:"./img/sugar.png"},
-
-    {name: "Tak Giu",image:"./img/TakGiu.png", 
-    length: "3", 
-    ingredient1:"3",ingredient2:"5", ingredient3:"7",
-    ingredient1Image:"./img/milo.png", ingredient2Image:"./img/milk.png", ingredient3Image:"./img/sugar.png"},
-
-    {name: "Teh C",image:"./img/TehC.png", 
-    length: "3", 
-    ingredient1:"2",ingredient2:"6", ingredient3:"7",
-    ingredient1Image:"./img/tea.png", ingredient2Image:"./img/evaporatedMilk.png", ingredient3Image:"./img/sugar.png"}
-
-]
-
-let selectedIngredients = [
-    {number: "1",image:"./img/SelectBlackKopi.png"},
-    {number: "2",image:"./img/SelectTea.png"},
-    {number: "3",image:"./img/SelectMilo.png"},
-    {number: "4",image:"./img/SelectIce.png"},
-    {number: "5",image:"./img/SelectMilk.png"},
-    {number: "6",image:"./img/SelectEvaporatedMilk.png"},
-    {number: "7",image:"./img/SelectSugar.png"}
-]
-
-startButton.addEventListener("click", () => {
-    playClickSound()
-    let delay = setTimeout(() => {
-        start.classList.add("hide")
-        game.classList.remove("hide")
-        current = 0;
-        totalQuestion = Math.floor(Math.random() * 5) + 5;
-        score = 0;
-        choice1 = 0;
-        choice2 = 0;
-        choice3 = 0;
-        Question()
-    }, 200);   
-})
-
-submit.addEventListener("click", () => {
-    if(choice1 == 0){
-        return
+    btn.addEventListener("click", () => {
+        let data = btn.getAttribute("data")
+    if(choosenAnswer == false){
+        playClickSound()
+        let overlay = document.createElement("img");
+        let newOverlay = null;
+        if(data == correctAnswer){
+            score += 1; 
+            overlay.src = "./img/Correct.png"
+            overlay.classList.add("overlay")
+            btn.appendChild(overlay);
+            choosenAnswer = true
+        }
+        if(data != correctAnswer){
+            overlay.src = "./img/wrong.png"
+            overlay.classList.add("overlay")
+            btn.appendChild(overlay);
+            choosenAnswer = true
+            
+            newOverlay = document.createElement("img");
+            newOverlay.src = "./img/Correct.png"
+            newOverlay.classList.add("overlay")
+            correctBtn.appendChild(newOverlay);
+        }
+        let delay = setTimeout(() => {
+            btn.removeChild(overlay)
+            if(newOverlay != null){
+                correctBtn.removeChild(newOverlay);
+            }
+            choosenAnswer = false
+            Question()
+          }, 2500);
     }
-    playClickSound()
-    let delay = setTimeout(()=>{
-        choosenAnswer1 = false
-        choosenAnswer2 = false
-        choosenAnswer3 = false
-
-        console.log(choice1,choice2,choice3)
-        console.log(correctAnswer1, correctAnswer2, correctAnswer3)
-
-        for(let i = 1; i < 4; i++){
-            let currentCheck = "choice" + i
-            if(window[currentCheck] == correctAnswer1 && choosenAnswer1 == false){
-                console.log("r1")
-                choosenAnswer1 = true
-            }
-            if(window[currentCheck] == correctAnswer2 && choosenAnswer2 == false){
-                console.log("r2")
-                choosenAnswer2 = true
-            }
-            if(window[currentCheck] == correctAnswer3 && choosenAnswer3 == false){
-                console.log("r3")
-                choosenAnswer3 = true
-            }
-            window[currentCheck] = 0
-        }
-
-        let popQuestionNumber = document.querySelector(".popUp .QuestionNumber")
-        let coffeeContent = document.querySelector(".popUp .coffee-content")
-        let product = document.querySelector(".popUp .product")
-        let output = document.querySelector(".output")
-        let text = document.querySelector(".text")
-
-        popUp.classList.remove("hide")
-        game.classList.add("hide")
-
-        console.log(product,coffeeContent, correctDrink)
-        if(choosenAnswer1 == true && choosenAnswer2 == true && choosenAnswer3 == true){
-            score += 1;
-
-            popQuestionNumber.innerHTML = `
-                ${current}/${totalQuestion}`
-            coffeeContent.innerHTML = ` Order: ${correctDrink.name}`
-            product.src= correctDrink.image
-            output.style.color="#4F8B56"
-            output.innerHTML = `Good! <img class="thumb" src="./img/right.png"></p>`
-            text.innerHTML = "Your Answer"
-        }
-        else{
-            popQuestionNumber.innerHTML = `
-                ${current}/${totalQuestion}`
-                coffeeContent.innerHTML = ` Order: ${correctDrink.name}`
-            product.src= correctDrink.image
-            output.style.color="#DF493A"
-            output.innerHTML = `Not Quite Right!</p>`
-            text.innerHTML = "Your Answer"
-        }
-        if(correctAnswer2 == 0){
-            let blank =document.querySelector(".rightAnswer2")
-            blank.classList.add("hide")
-        }
-        if(correctAnswer3 == 0){
-            let blank =document.querySelector(".rightAnswer3")
-            blank.classList.add("hide")
-        }
-        for(let i = 1; i < 4; i++){
-            let right = "rightAnswer" + i
-            let check = "correctAnswer" + i
-            let image = "correctImage" + i
-            if(window[check] != 0){
-                let rightAnswer = document.querySelector(`.${right}`)
-
-                rightAnswer.style.backgroundImage = "url('" + window[image] + "')"
-                rightAnswer.style.backgroundSize = "contain"
-                rightAnswer.style.backgroundPosition = "center center"
-                rightAnswer.style.backgroundRepeat = "no-repeat"
-            }
-        }
-    },200)
-})
-
-next.addEventListener("click", () => {
-    playClickSound()
-    let delay = setTimeout(() => {
-        choice1 = 0;
-        choice2 = 0;
-        choice3 = 0;
-        choosenAnswer1 = false
-        choosenAnswer2 = false
-        choosenAnswer3 = false
-        for(let i = 1; i < 7; i++){
-            let btn = "chosenBtn" + i
-            window[btn] = false
-        }
-        popUp.classList.add("hide")
-        game.classList.remove("hide")
-        Question()
-    }, 200);
-})
-
-ingredients()
-
-function ingredients(){
-    for (let i = 0; i < 7; i ++){
-        let currentClass = "btn" + (i + 1)
-
-        let currentBtn = document.getElementById(currentClass)
-        
-        currentBtn.addEventListener("click", () => {
-            playClickSound()
-            if(choice1 == selectedIngredients[i].number){
-                currentBtn.style.border = "transparent"
-                choice1 = 0
-                return
-            }
-            if(choice2 == selectedIngredients[i].number){
-                currentBtn.style.border = "transparent"
-                choice2 = 0
-                return
-            }
-            if(choice3 == selectedIngredients[i].number){
-                currentBtn.style.border = "transparent"
-                choice3 = 0
-                return
-            }
-            if(choice1 == 0){
-                currentBtn.style.border = "5px solid black"
-                choice1 = selectedIngredients[i].number
-                console.log(choice1)
-            }
-            else if(choice2 == 0){
-                currentBtn.style.border = "5px solid black"
-                choice2 = selectedIngredients[i].number
-                console.log(choice2)
-            }
-            else if(choice3 == 0){
-                currentBtn.style.border = "5px solid black"
-                choice3 = selectedIngredients[i].number
-                console.log(choice3)
-            }
-            else{
-                return
-            }
-        })
-    }
+    })
 }
 
+/*confirm.addEventListener("click", () => {
+    if(choice == null  && choicePattern == null){
+        return
+    }
+    if(choice == correctAnswer  && choicePattern == pattern){
+        score += 1;
+        ans1.style.backgroundImage = "none"
+        ans2.style.backgroundImage = "none"
+        ans3.style.backgroundImage = "none"
+        ans4.style.backgroundImage = "none"
+        if(choice == wrongAns1  && choicePattern == wrongPattern1){
+            ans1.innerHTML=`
+            <img src="${wrongImg1}"></div>
+            <img class="overlay" src="./img/Correct.png">`
+        }
+        if(choice == wrongAns2 && choicePattern == wrongPattern2){
+            ans2.innerHTML=`
+            <img src="${wrongImg2}"></div>
+            <img class="overlay" src="./img/Correct.png">`
+        }
+        if(choice == wrongAns3 && choicePattern == wrongPattern3){
+            ans3.innerHTML=`
+            <img src="${wrongImg3}"></div>
+            <img class="overlay" src="./img/Correct.png">`
+
+        }
+        if(choice == wrongAns4 && choicePattern == wrongPattern4){
+            ans4.innerHTML=`
+            <img src="${wrongImg4}"></div>
+            <img class="overlay" src="./img/Correct.png">`
+        }
+    }
+        else{
+            console.log("wrong")
+            ans1.style.backgroundImage = "none"
+            ans2.style.backgroundImage = "none"
+            ans3.style.backgroundImage = "none"
+            ans4.style.backgroundImage = "none"
+            if(choice == wrongAns1 && choicePattern == wrongPattern1){
+                ans1.innerHTML=`
+                <img src="${wrongImg1}"></div>
+                <img class="overlay" src="./img/wrong.png">`
+            }
+            if(choice == wrongAns2 && choicePattern == wrongPattern2){
+                ans2.innerHTML=`
+                <img src="${wrongImg2}"></div>
+                <img class="overlay" src="./img/wrong.png">`
+            }
+            if(choice == wrongAns3 && choicePattern == wrongPattern3){
+                ans3.innerHTML=`
+                <img src="${wrongImg3}"></div>
+                <img class="overlay" src="./img/wrong.png">`
+            }
+            if(choice == wrongAns4 && choicePattern == wrongPattern4){
+                ans4.innerHTML=`
+                <img src="${wrongImg4}"></div>
+                <img class="overlay" src="./img/wrong.png">`
+            }
+            if(correctAnswer == wrongAns1 && pattern == wrongPattern1){
+                ans1.innerHTML=`
+                <img src="${wrongImg1}"></div>
+                <img class="overlay" src="./img/Correct.png">`
+            }
+            if(correctAnswer == wrongAns2 && pattern == wrongPattern2){
+                ans2.innerHTML=`
+                <img src="${wrongImg2}"></div>
+                <img class="overlay" src="./img/Correct.png">`
+            }
+            if(correctAnswer == wrongAns3 && pattern == wrongPattern3){
+                ans3.innerHTML=`
+                <img src="${wrongImg3}"></div>
+                <img class="overlay" src="./img/Correct.png">`
+            }
+            if(correctAnswer == wrongAns4 && pattern == wrongPattern4){
+                ans4.innerHTML=`
+                <img src="${wrongImg4}"></div>
+                <img class="overlay" src="./img/Correct.png">`
+            }
+        }
+        choosenAnswer = true
+        confirm.innerHTML = ""
+        let delay = setTimeout(() => {
+            choosenAnswer = false;
+            choice = choicePattern = null
+            ans1.style.backgroundImage = "none"
+            ans2.style.backgroundImage = "none"
+            ans3.style.backgroundImage = "none"
+            ans4.style.backgroundImage = "none"
+            Question()
+          }, 2500);
+    })*/
+
 function Question(){
+    let pass = totalQuestion /2;
     if(current == totalQuestion){
         console.log(score)
-        let pass = Math.floor(totalQuestion / 2)
-        game.classList.add('hide')
         final.classList.remove("hide")
+        plus.classList.add("hide")
         if(score == totalQuestion){
             clap.currentTime = 0
             clap.play()
-            final.innerHTML = `
-            <div class="game-title">
-                <img class="title endTitle" src="./img/title.png">
-            </div>
-            <img class="end" src="./img/kopiKing.png">
-            <p>You are a Kopi King!</p>
-            <button class="playAgain">
-            <p class="words"><img src="./img/again.png" class="arrowHead">Play again</p>
-            </button>
-            <button class="home">
-            <p class="words"><img src="./img/home.png" class="arrowHead">Back to Home</p>
-            </button>`
+            medal.innerHTML = `<img class = "imgBig" src = "./img/Excellent.png">`
+            words1.innerHTML = "Your score"
+            words2.innerHTML = score + " / " + totalQuestion
         }
-        else if(score > pass){
+        else if(score >= pass){
             completed.currentTime = 0
             completed.play()
-            final.innerHTML = `
-            <div class="game-title">
-                <img class="title endTitle" src="./img/title.png">
-            </div>
-            <img class="end" src="./img/kopiMaster.png">
-            <p>You are a Kopi Master.</p>
-            <button class="playAgain">
-            <p class="words"><img src="./img/again.png" class="arrowHead">Play again</p>
-            </button>
-            <button class="home">
-            <p class="words"><img src="./img/home.png" class="arrowHead">Back to Home</p>
-            </button>`
+            medal.innerHTML = `<img class = "imgBig" src = "./img/Well Done.png">`
+            words1.innerHTML = "Your score"
+            words2.innerHTML = score + " / " + totalQuestion
         }
         else if(score < pass){
             lose.currentTime = 0
             lose.play()
-            final.innerHTML = `
-            <div class="game-title">
-                <img class="title endTitle" src="./img/title.png">
-            </div>
-            <img class="end" src="./img/kopiNewbie.png">
-            <p>You learn something new!</p>
-            <button class="playAgain">
-            <p class="words"><img src="./img/again.png" class="arrowHead">Play again</p>
-            </button>
-            <button class="home">
-            <p class="words"><img src="./img/home.png" class="arrowHead">Back to Home</p>
-            </button>`
+            medal.innerHTML = `<img class = "imgMedium" src = "./img/You Tried.png">`
+            words1.innerHTML = "Try again!"
+            words2.innerHTML = "Take you time to calculate the answer."
         }
-
-        let playAgain = document.querySelector(".playAgain")
-        playAgain.addEventListener("click", () => {
-            playClickSound()
-            let delay = setTimeout(() => {
-                final.classList.add("hide")
-                start.classList.remove("hide")
-                easyQ = normalQ = hardQ = false
-            }, 200);      
-        })
-        let homeButton = document.querySelector(".home")
-        homeButton.addEventListener("click", () => {
-            playClickSound()
-            let delay = setTimeout(() => {
-              location.assign('https://gimme.sg/activations/dementia/');
-            }, 200);
-        })
         return
     }
+    current += 1;
 
+    questionNumber.innerHTML = current + " / " + totalQuestion;
 
-    if (tempArray.length === 0){
-        for(let j = 0; j < allQuestion.length; j++){
-            tempArray.push(allQuestion[j])
+    pattern = Math.floor(Math.random() * 3)
+
+    let sign;
+    let tempoArray =[]
+
+    if(plusQuestions == true){
+        window.number1 = Math.floor(Math.random() * 5) + 1
+        window.number2 = Math.floor(Math.random() * 4) + 1
+        correctAnswer = window.number1 + window.number2;
+    }
+    else if(minusQuestions == true){
+        window.number1 = Math.floor(Math.random() * 9) + 1
+        window.number2 = Math.floor(Math.random() * 8) + 1
+        for(let x=0; x<10; x++){
+            correctAnswer = window.number1 - window.number2;
+            if(correctAnswer == 0){
+                window.number1 = Math.floor(Math.random() * 9) + 1
+            }
         }
     }
+    else if(mixedQuestions == true){
+        sign = Math.random() > 0.5 ? 1 : 2
+        if(sign == 1){
+            window.number1 = Math.floor(Math.random() * 5) + 1
+            window.number2 = Math.floor(Math.random() * 4) + 1
+            correctAnswer = window.number1 + window.number2;
+        }
+        if(sign == 2){
+            window.number1 = Math.floor(Math.random() * 9) + 1
+            window.number2 = Math.floor(Math.random() * 8) + 1
+            for(let x=0; x<10; x++){
+                correctAnswer = window.number1 - window.number2;
+                if(correctAnswer == 0){
+                    window.number1 = Math.floor(Math.random() * 9) + 1
+                }
+            }
+        }
+    }
+
+    for(let x = 1; x < 3; x++){
+        let currentNumber = "number" + x
+        currentNumber = window[currentNumber] - 1
+
+        console.log(currentNumber)
+        if(pattern == 0){
+            if(x == 1){
+                image1 = tongTile[currentNumber]
+            }
+            if(x == 2){
+                image2 = tongTile[currentNumber]
+            }
+        }
+        if(pattern == 1){
+            if(x == 1){
+                image1 = wanTile[currentNumber]
+            }
+            if(x == 2){
+                image2 = wanTile[currentNumber]
+            }
+        }if(pattern == 2){
+            if(x == 1){
+                image1 = shouTile[currentNumber]
+            }
+            if(x == 2){
+                image2 = shouTile[currentNumber]
+            }
+        }
+    }
+    console.log(window.number1, window.number2)
+    console.log(image1, image2)
     
-    console.log(tempArray)
-    current += 1;
-    questionNumber.innerHTML = current + "/" + totalQuestion;
+    for(let x = 1; x < 10; x++){
+        tempoArray.push(x)
+    }
 
-    qIndex = Math.floor(Math.random() * tempArray.length);
+    if(plusQuestions == true){
+        operation.innerHTML = `
+    <img src="${image1}"/>
+    <img src="./img/+.png"/>
+    <img src="${image2}"/>`
+    }
+    else if(minusQuestions == true){
+        operation.innerHTML = `
+        <img src="${image1}"/>
+        <img src="./img/-.png"/>
+        <img src="${image2}"/>`
+        if(correctAnswer < 0){
+            console.log("swap")
+            correctAnswer = window.number2 - window.number1;
+            operation.innerHTML = `
+            <img src="${image2}"/>
+            <img src="./img/-.png"/>
+            <img src="${image1}"/>`
+        }
+    }
+    else if(mixedQuestions == true){
+        if(sign == 1){
+        operation.innerHTML = `
+            <img src="${image1}"/>
+            <img src="./img/+.png"/>
+            <img src="${image2}"/>`
+    }
+        if(sign == 2){
+            operation.innerHTML = `
+                <img src="${image1}"/>
+                <img src="./img/-.png"/>
+                <img src="${image2}"/>`
+        }
+        if(correctAnswer < 0){
+            correctAnswer = window.number2 - window.number1;
+            operation.innerHTML = `
+            <img src="${image2}"/>
+            <img src="./img/-.png"/>
+            <img src="${image1}"/>`
+        }
+    }
+    tempoArray.splice((correctAnswer - 1), 1)
+    console.log(tempoArray)
     
-    correctDrink = tempArray[qIndex]
-    correctAnswer1 = tempArray[qIndex].ingredient1
-    correctAnswer2 = tempArray[qIndex].ingredient2
-    correctAnswer3 = tempArray[qIndex].ingredient3
-    correctImage1 = tempArray[qIndex].ingredient1Image
-    correctImage2 = tempArray[qIndex].ingredient2Image
-    correctImage3 = tempArray[qIndex].ingredient3Image
+    for(let j=1; j < 5; j++){
+        let currentClass = "btn" + j
+        let currentButton = document.querySelector(`.${currentClass}`)
 
-    question.innerHTML = `
-    <img class="product" src="${tempArray[qIndex].image}">
-    <div class="coffee-content">${tempArray[qIndex].name}</div>`
-    let product = document.querySelector(".product");
-    product.style.width = "30%"
+        let currentImageClass = "image" + j
+        let currentImage = document.querySelector(`.${currentImageClass}`)
 
-    for (let i = 0; i < 3; i ++){
-        let currentChoice = "choice" + (i + 1)
-        window[currentChoice] = 0;
+        let randomPattern = Math.floor(Math.random() * 3);
+        let randomNumber = Math.floor(Math.random() * tempoArray.length);
+
+        let number = tempoArray[randomNumber]
+
+        currentButton.setAttribute("data", number)
+
+        tempoArray.splice(randomNumber, 1)
+        console.log(tempoArray)
+        number -=1
+
+        if(randomPattern == 0){
+            currentImage.src = tongTile[number]
+        }
+        if(randomPattern == 1){
+            currentImage.src = wanTile[number]
+        }
+        if(randomPattern == 2){
+            currentImage.src = shouTile[number]
+        }
     }
-    for (let i = 0; i < 7; i ++){
-        let currentClass = "btn" + (i + 1)
 
-        let currentBtn = document.getElementById(`${currentClass}`)  
-        currentBtn.style.border = "transparent"
-    }
-    for (let i = 0; i < 3; i ++){
-        let currentAnswerClass = "rightAnswer" + (i + 1)
+    let correctAnswerIndex = Math.floor(Math.random() * 4)+1;
+    let correctAnswerId = "btn" + correctAnswerIndex;
+    correctBtn = document.querySelector(`.${correctAnswerId}`)
+    let correctImageId = "image" + correctAnswerIndex;
+    let correctImage = document.querySelector(`.${correctImageId}`)
 
-        let currentAnswer = document.querySelector(`.${currentAnswerClass}`)  
-        currentAnswer.classList.remove("hide")
+    console.log(correctAnswer - 1)
+    console.log(pattern)
+    if(pattern == 0){
+        correctImage.src = tongTile[(correctAnswer - 1)]
+        correctBtn.setAttribute("data", correctAnswer)
     }
-    console.log(tempArray)
-    tempArray.splice(qIndex, 1);
+    if(pattern == 1){
+        correctImage.src = wanTile[(correctAnswer - 1)]
+        correctBtn.setAttribute("data", correctAnswer)
+    }
+    if(pattern == 2){
+        correctImage.src = shouTile[(correctAnswer - 1)]
+        correctBtn.setAttribute("data", correctAnswer)
+    }
+}
+
+startButton.addEventListener("click", () => {
+    playClickSound()
+    let delay = setTimeout(() => {
+      start.classList.add("hide")
+      select.classList.remove("hide")
+    }, 200);
+})
+plusButton.addEventListener("click", () => {
+    playClickSound()
+    let delay = setTimeout(() => {
+        select.classList.add("hide")
+        plus.classList.remove("hide")
+        plusQuestions = true;
+        began()
+    }, 200);
+})
+minusButton.addEventListener("click", () => {
+    playClickSound()
+    let delay = setTimeout(() => {
+        select.classList.add("hide")
+        plus.classList.remove("hide")
+        minusQuestions = true;
+        began()
+    }, 200);
+})
+mixedButton.addEventListener("click", () => {
+    playClickSound()
+    let delay = setTimeout(() => {
+        select.classList.add("hide")
+        plus.classList.remove("hide")
+        mixedQuestions = true;
+        began()
+    }, 200);
+})
+playAgain.addEventListener("click", () => {
+    playClickSound()
+    let delay = setTimeout(() => {
+        start.classList.remove("hide")
+        final.classList.add("hide")
+        plusQuestions = false;
+        minusQuestions = false;
+        mixedQuestions = false;
+    }, 200);
+})
+
+homeButton.addEventListener("click", () => {
+    playClickSound()
+    let delay = setTimeout(() => {
+      location.assign('https://gimme.sg/activations/dementia/');
+    }, 200);
+})
+
+function began(){
+    current = 0;
+    score = 0;
+    totalQuestion = 10
+    choosenAnswer = false
+    Question();
 }
 
 function playClickSound(){
