@@ -69,6 +69,27 @@ div{
     width: 40vh;
     height: 10vh;
 }
+.startGame:active,.playAgain:active,.plusGame:active,.minusGame:active,.mixedGame:active,.home:active{
+    animation: animate 0.2s;
+}
+
+@keyframes animate{
+    0%{
+        transform: rotate(0deg) translateX(0px);
+    }
+    25%{
+        transform: rotate(-20deg) translateX(-10px);
+    }
+    50%{
+        transform: rotate(0deg) translateX(0px);
+    }
+    75%{
+        transform: rotate(20deg) translateX(10px);
+    }
+    100%{
+        transform: rotate(0deg) translateX(0px);
+    }
+}
 .top{
     margin-top: 10px;
     height: 10vh;
@@ -147,25 +168,30 @@ height: 100%;
     grid-template-rows: repeat(2, 18vh);
     width: 40vh;
     height:40vh;
+    justify-items: center;
+    align-items: center;
 }
-#btn1 img, #btn2 img, #btn3 img, #btn4 img{
+.btn1,.btn2,.btn3,.btn4{
+    position: relative;
+}
+.btn1 img, .btn2 img, .btn3 img, .btn4 img{
     position: relative;
     z-index: 10;
 }
 .overlay{
     position: absolute !important;
-    top: -5px;
-    right:13px;
+    top: -9px;
+    right:-7px;
     box-sizing: content-box;
     display: flex;
     z-index: 0 !important;
-    width: 80%;
+    width: 120%;
 }
 
 /*ipad*/
 @media screen and (min-width:768px) and (max-width:1023px) {
     .overlay{
-        right:16px;
+        right:-12px;
     }
 }
 /*desktop*/
@@ -178,7 +204,11 @@ height: 100%;
         max-width: 400px;
         justify-content: center;
     }
-    .overlay{
-        right:10px;
-    }
+
 }
+
+@media screen and (max-width:767px){
+    .endTitle {
+      display: none;
+    }
+  }

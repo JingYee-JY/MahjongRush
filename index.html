@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable =no">
     <title>Mahjong Rush</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" 
@@ -39,27 +39,37 @@
         <div id="operation"></div>
         <img class="big" src="./img/text.png">
         <div class="options">
-            <button id="btn1">0</button>
-            <button id="btn2">0</button>
-            <button id="btn3">0</button>
-            <button id="btn4">0</button>
+            <div class="btn1">
+                <img class="image1">
+            </div>
+            <div class="btn2">
+                <img class="image2">
+            </div>
+            <div class="btn3">
+                <img class="image3">
+            </div>
+            <div class="btn4">
+                <img class="image4">
+            </div>
         </div>
-        <button class="confrimButton">
-            <img class="btn" src="./img/confrim.png">
-        </button>
     </div>
     <div class="final hide">
-        <img class="finaltitle" src="./img/title.png">
+        <img class="finaltitle endTitle" src="./img/title.png">
         <div class="medal"></div>
         <div class="words1"></div>
         <div class="words2"></div>
         <button class="playAgain">
             <img class="btn" src="./img/playAgain.png">
         </button>
-        <button class="home" onclick="window.location.href='https://gimme.sg/activations/dementia/';">
+        <button class="home">
             <img class="btn" src="./img/home.png">
         </button>
     </div>
+
+    <audio id="click" src="sound/click.wav"></audio>
+    <audio id="clap" src="sound/clap.wav"></audio>
+    <audio id="completed" src="./sound/completed.wav"></audio>
+    <audio id="lose" src="./sound/lose.wav"></audio>
     
 </body>
 </html>
