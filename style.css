@@ -1,5 +1,5 @@
 body{
-    background-color: #63A86B;
+    background-color: #03A37F;
     width: 100%;
     height: 100%;
     display: flex;
@@ -9,11 +9,18 @@ body{
     position: fixed;
     padding: 0;
     margin: 0;
+    font-family: 'Londrina Solid', cursive;
 }
+.gameTitle{
+    width: 40%;
+    height: auto;
+}
+
 .plus{
     align-content: center;
     justify-content: center;
 }
+
 button{
     position: relative;
     background-color: rgba(255, 255, 255,0);
@@ -27,6 +34,7 @@ div{
 }
 .start,
 .selection,
+.instructionPage,
 .game,
 .final{
     position: absolute;
@@ -35,23 +43,96 @@ div{
     align-items: center;
     flex-direction: column;
     place-items: center;
-    background-color: #63A86B;
+    background-color: #03A37F;
     gap: 2vh;
     width: 100%;
     height: 100%;
 }
-.selection{
+.popUp{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    place-items: center;
+    background-color: rgb(25, 78, 32,0.8);
+    z-index: 25;
+
+}
+.selection,.instructionPage{
+    height: 100%;
+    justify-content: flex-start;
     background-image: url("./img/selectionTiles.png");
-    background-position: center;
-    background-size: 55vh;
+    background-position: bottom;
+    background-size: contain;
     background-repeat: no-repeat;
+}
+.instructionPage{
+    z-index: 20;
+}
+
+.instructionDetails{
+    background-color: white;
+    border-radius: 20px;
+    height: 185px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.instructionDetails p{
+    color: #184A1E;
+    font-size: 30px;
+    text-align: center;
+}
+
+.textDetail{
+    width: 300px;
+    height: 45px;
+    text-align: center;
+    padding-top: 2.5vh;
+}
+.background{
+    background-color: white;
+    border: 10px solid #FBCE59;
+    border-radius: 15px;
+    font-weight: 300;
+    text-align: center;
+    padding: 20px;
+    font-size: 32px;
+    color: #433836;
+}
+.mark{
+    width: 15%;
+    margin-bottom: -30px;
+    height: auto;
+    z-index: 25;
+}
+.correctAnswer{
+    padding: 10px;
+    width: 50%;
+    padding-bottom: 20px;
+}
+.next{
+    margin-top: -40px;
+    height: auto;
+}
+.next img{
+    width: 60%;
+    height: auto;
+}
+.words{
+    font-weight: 500;
+    font-size: 60px;
+    padding-bottom: 5px;
 }
 .slectiontitle{
     position: relative;
     margin: 0%;
     padding: 0%;
-    top: -5vh;
-    width: 35vh; 
+    margin-top: 30px;
+    width: 50%;
 }
 .finaltitle{
     position: relative;
@@ -61,15 +142,13 @@ div{
 }
 .text{
     position: relative;
-    top: -3vh;
-    width: 20vh;
-    padding: 2.5vh;
+    width: 45%;
+    padding-top: 2.5vh;
 }
 .btn{
     width: 40vh;
-    height: 10vh;
 }
-.startGame:active,.playAgain:active,.plusGame:active,.minusGame:active,.mixedGame:active,.home:active{
+.startGame:active,.playGame:active,.playAgain:active,.next:active,.plusGame:active,.minusGame:active,.mixedGame:active,.home:active{
     animation: animate 0.2s;
 }
 
@@ -90,12 +169,30 @@ div{
         transform: rotate(0deg) translateX(0px);
     }
 }
+
+.questionNumber{
+    background-color: white;
+    border-radius: 10px;
+    width: 100px;
+    padding: 2px;
+    color: #194E20;
+    margin: auto; 
+    z-index: 15;
+    position: relative;
+}
+.chosen{
+    background-color: #184A1E;
+    border-radius: 10px;
+    padding: 10px 25px;
+}
 .top{
-    margin-top: 10px;
-    height: 10vh;
+    text-align: center;
 }
 .big{
-    width: 40vh;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    height: 70px;
 }
 .right{
     position: absolute;
@@ -115,9 +212,6 @@ div{
     display: none;
     visibility: hidden;
 }
-.questionNumber{
-    font-family: "Lilita One";
-}
 img{
     width: 12vh;
 }
@@ -128,7 +222,6 @@ img{
 }
 p{
     margin: 0px;
-    height: 3vh;
 }
 .correct,
 .wrong{
@@ -139,27 +232,52 @@ p{
 .small{
     width: 10vh;
 }
-.words1{
-    color: white;
-    font-size: 5vh;
-    font-weight: 500;
-    font-family: "Lilita One";
+.group{
+    background-color: white;
+    border-radius: 20px;
+    width: 300px;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 10px solid #00DEAF;
+}
+.scoreText{
+    background-color: #FBCE59;
+    border-radius: 10px;
+    padding: 5px;
+    width: 255px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: -50px;
     text-align: center;
+    color: #194E20;
+    z-index: 20;
+}
+.words1{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 400;
+    color: #01A27E;
 }
 .words2{
-    color: white;
-    font-size: 3vh;
-    font-weight: 500;
-    font-family: "Lilita One";
+    color: #223E3F;
+    font-size: 60px;
+    font-weight: 900;
     text-align: center;
 }
-.imgBig{
-width: 100%;
-height: 100%;
+.medal{
+    width: 80%;
+    margin: 0 auto;
+    height: auto;
 }
-.imgMedium{
-    width: 25vh;
-    height: 30vh;
+#operation{
+    background-color: #FBCE59;
+    border-radius: 10px;
+    padding: 15px;
+    padding-top: 40px;
+    margin-top: -25px;
 }
 .options{
     display: grid;
@@ -193,6 +311,88 @@ height: 100%;
     .overlay{
         right:-12px;
     }
+    .textDetail {
+        width: 400px;
+        font-size: 80px;
+        height: 100px;
+    }
+    .instructionDetails{
+        height: 500px;
+    }
+    .instructionDetails p {
+        color: #184A1E;
+        font-size: 80px;
+        text-align: center;
+    }
+    .questionNumber {
+        width: 200px;
+    }
+    .big{
+        font-size: 60px;
+        height: 150px;
+    }
+    img{
+        width: 17vh;
+    }
+    .options {
+        gap: 4vh;
+        grid-template-columns: repeat(2, 20vh);
+        grid-template-rows: repeat(2, 20vh);
+        width: 44vh;
+        height: 44vh
+    }
+    .background {
+        background-color: white;
+        border: 20px solid #FBCE59;
+        border-radius: 15px;
+        font-weight: 300;
+        text-align: center;
+        padding: 80px;
+        font-size: 32px;
+        color: #433836;
+    }
+    .background p{
+        font-size: 60px;
+    }
+    .words {
+        font-size: 130px !important;
+    }
+    .correctAnswer {
+        padding: 30px;
+        width: 65%;
+    }
+    .next {
+        margin-top: -80px;
+        height: auto;
+    }
+    .mark {
+        width: 15%;
+        margin-bottom: -60px;
+        height: auto;
+        z-index: 25;
+    }
+    .group {
+        width: 500px;
+        height: 300px;
+    }
+    .words1 {
+        font-size: 60px;
+    }
+    .words2 {
+        font-size: 100px;
+    }
+    .scoreText {
+        width: 300px;
+        margin-bottom: -70px;
+    }
+    .buttons{
+        display: flex;
+        gap: 70px;
+        justify-content: center;
+    }
+    .buttons img{
+        width: 25%;
+    }
 }
 /*desktop*/
 @media screen and (min-width:1200px){
@@ -200,7 +400,7 @@ height: 100%;
         display: flex;
       width: 100%;
     }
-    .start, .selection, .game,.final{
+    .start, .selection, .game,.final,.popUp, .instructionPage{
         max-width: 400px;
         justify-content: center;
     }

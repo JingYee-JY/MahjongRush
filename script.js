@@ -1,6 +1,8 @@
 const startButton = document.querySelector(".startGame");
 const start = document.querySelector(".start");
+const instructionPage = document.querySelector(".instructionPage");
 const select = document.querySelector(".selection");
+const playGame = document.querySelector(".playGame");
 const plusButton = document.querySelector(".plusGame");
 const minusButton = document.querySelector(".minusGame");
 const mixedButton = document.querySelector(".mixedGame");
@@ -11,13 +13,18 @@ const final = document.querySelector(".final");
 const medal = document.querySelector(".medal")
 const words1 = document.querySelector(".words1")
 const words2 = document.querySelector(".words2")
+const scoreText = document.querySelector(".scoreText")
 const playAgain = document.querySelector(".playAgain")
 const operation = document.getElementById("operation");
+const encourageWords = document.querySelector(".words");
+const mark = document.querySelector(".mark");
+const showAnswer = document.querySelector(".correctAnswer");
 const ans1 = document.querySelector(".btn1");
 const ans2 = document.querySelector(".btn2");
 const ans3 = document.querySelector(".btn3");
 const ans4 = document.querySelector(".btn4");
-const next = document.querySelector(".nextButton");
+const next = document.querySelector(".next");
+const popUp = document.querySelector(".popUp");
 const questionNumber = document.querySelector(".questionNumber");
 const homeButton = document.querySelector(".home")
 
@@ -71,6 +78,7 @@ let correctBtn;
 let pattern;
 let totalQuestion = 0;
 let choosenAnswer
+let correctImage;
 
 let plusQuestions = false;
 let minusQuestions = false;
@@ -86,32 +94,21 @@ for(let x=1; x<5; x++){
         playClickSound()
         let overlay = document.createElement("img");
         let newOverlay = null;
+        btn.classList.add("chosen");
+        showAnswer.src = correctImage.src;
+        choosenAnswer = true
         if(data == correctAnswer){
             score += 1; 
-            overlay.src = "./img/Correct.png"
-            overlay.classList.add("overlay")
-            btn.appendChild(overlay);
-            choosenAnswer = true
+            mark.src = "./img/Correct.png"
+            encourageWords.textContent = "Correct!";
         }
-        if(data != correctAnswer){
-            overlay.src = "./img/wrong.png"
-            overlay.classList.add("overlay")
-            btn.appendChild(overlay);
-            choosenAnswer = true
-            
-            newOverlay = document.createElement("img");
-            newOverlay.src = "./img/Correct.png"
-            newOverlay.classList.add("overlay")
-            correctBtn.appendChild(newOverlay);
+        else{
+            mark.src = "./img/wrong.png"
+            encourageWords.textContent = "Good try!";
         }
-        let delay = setTimeout(() => {
-            btn.removeChild(overlay)
-            if(newOverlay != null){
-                correctBtn.removeChild(newOverlay);
-            }
-            choosenAnswer = false
-            Question()
-          }, 2500);
+        setTimeout(() => {
+            popUp.classList.remove("hide")
+          }, 500);
     }
     })
 }
@@ -214,32 +211,46 @@ function Question(){
         console.log(score)
         final.classList.remove("hide")
         plus.classList.add("hide")
+        let starScore = totalQuestion / 5;
         if(score == totalQuestion){
             clap.currentTime = 0
             clap.play()
-            medal.innerHTML = `<img class = "imgBig" src = "./img/Excellent.png">`
+            scoreText.textContent = "Excellent!"
+            medal.src = "./img/Excellent.png";
             words1.innerHTML = "Your score"
-            words2.innerHTML = score + " / " + totalQuestion
+            words2.innerHTML = score + "/" + totalQuestion
         }
         else if(score >= pass){
             completed.currentTime = 0
+            scoreText.textContent = "Well done!"
             completed.play()
-            medal.innerHTML = `<img class = "imgBig" src = "./img/Well Done.png">`
+            if(score < totalQuestion && score >= totalQuestion - starScore) // score < total && score >= 8
+                medal.src = "./img/Well Done.png"
+            if(score < totalQuestion - starScore && score >= totalQuestion - starScore - starScore) // score < 8 && score >= 6
+                medal.src = "./img/Well Done1.png"
+            else
+                medal.src = "./img/You Tried.png"
             words1.innerHTML = "Your score"
-            words2.innerHTML = score + " / " + totalQuestion
+            words2.innerHTML = score + "/" + totalQuestion
         }
         else if(score < pass){
             lose.currentTime = 0
+            scoreText.textContent = "You tried!"
             lose.play()
-            medal.innerHTML = `<img class = "imgMedium" src = "./img/You Tried.png">`
-            words1.innerHTML = "Try again!"
-            words2.innerHTML = "Take you time to calculate the answer."
+            if(score == starScore + starScore)
+                medal.src = "./img/You Tried.png"
+            if(score < starScore + starScore && score >= starScore) // score < 4 && score >= 2
+                medal.src = "./img/You Tried1.png"
+            else
+                medal.src = "./img/You Tried2.png"
+            words1.innerHTML = "Your score"
+            words2.innerHTML = score + "/" + totalQuestion
         }
         return
     }
     current += 1;
 
-    questionNumber.innerHTML = current + " / " + totalQuestion;
+    questionNumber.innerHTML = current + "/" + totalQuestion;
 
     pattern = Math.floor(Math.random() * 3)
 
@@ -393,7 +404,7 @@ function Question(){
     let correctAnswerId = "btn" + correctAnswerIndex;
     correctBtn = document.querySelector(`.${correctAnswerId}`)
     let correctImageId = "image" + correctAnswerIndex;
-    let correctImage = document.querySelector(`.${correctImageId}`)
+    correctImage = document.querySelector(`.${correctImageId}`)
 
     console.log(correctAnswer - 1)
     console.log(pattern)
@@ -421,8 +432,7 @@ startButton.addEventListener("click", () => {
 plusButton.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
-        select.classList.add("hide")
-        plus.classList.remove("hide")
+        showInstruction();
         plusQuestions = true;
         began()
     }, 200);
@@ -430,8 +440,7 @@ plusButton.addEventListener("click", () => {
 minusButton.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
-        select.classList.add("hide")
-        plus.classList.remove("hide")
+        showInstruction();
         minusQuestions = true;
         began()
     }, 200);
@@ -439,10 +448,24 @@ minusButton.addEventListener("click", () => {
 mixedButton.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
-        select.classList.add("hide")
-        plus.classList.remove("hide")
+        showInstruction();
         mixedQuestions = true;
         began()
+    }, 200);
+})
+playGame.addEventListener("click", () => {
+    playClickSound()
+    let delay = setTimeout(() => {
+        instructionPage.classList.add("hide");
+    }, 200);
+})
+next.addEventListener("click", () => {
+    playClickSound()
+    let delay = setTimeout(() => {
+        document.querySelector(".chosen").classList.remove("chosen");
+        popUp.classList.add("hide");
+        choosenAnswer = false
+        Question()
     }, 200);
 })
 playAgain.addEventListener("click", () => {
@@ -462,6 +485,12 @@ homeButton.addEventListener("click", () => {
       location.assign('https://gimme.sg/activations/dementia/');
     }, 200);
 })
+
+function showInstruction(){
+    instructionPage.classList.remove("hide")
+    select.classList.add("hide")
+    plus.classList.remove("hide")
+}
 
 function began(){
     current = 0;

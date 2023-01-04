@@ -7,11 +7,12 @@
     <title>Mahjong Rush</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" 
-    href="https://fonts.googleapis.com/css?family=Lilita One">
+    href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap">
     <script src="./script.js" type="module"></script>
 </head>
 <body>
     <div class="start">
+        <img class="gameTitle" src="./img/title.png">
         <img class="title" src="./img/startTitle.png">
         <button class="startGame">
             <img class="btn" src="./img/startGame.png">
@@ -30,14 +31,29 @@
             <img class="btn" src="./img/mixGame.png">
         </button>
     </div>
+    <div class="instructionPage hide">
+        <img class="slectiontitle" src="./img/title.png">
+        <p class="textDetail">How to play</p>
+        <div class="instructionDetails">
+            <p>Use mathematic <br> 
+                skills to add or <br>
+                minus the same <br>
+                pattern Mahjong <br>
+                to get the answer</p>
+        </div>
+        <button class="playGame">
+            <img class="btn" src="./img/playGame.png">
+        </button>
+    </div>
     <div class="game hide">
         <div class="top">
-            <div class="left">
                 <div class="questionNumber">0/0</div>
-            </div>
+                <div id="operation"></div>
         </div>
-        <div id="operation"></div>
-        <img class="big" src="./img/text.png">
+        <p class="big">
+            Choose the <br>
+            correct answer
+        </p>
         <div class="options">
             <div class="btn1">
                 <img class="image1">
@@ -53,17 +69,29 @@
             </div>
         </div>
     </div>
+    <div class="popUp hide">
+        <img class="mark">
+        <div class="background">
+            <p class="words"></p>
+            <p>the answer is</p>
+            <img class="correctAnswer">
+        </div>
+        <button class="next">
+            <img class="btn" src="./img/next.png">
+        </button>
+    </div>
     <div class="final hide">
-        <img class="finaltitle endTitle" src="./img/title.png">
-        <div class="medal"></div>
-        <div class="words1"></div>
-        <div class="words2"></div>
-        <button class="playAgain">
-            <img class="btn" src="./img/playAgain.png">
-        </button>
-        <button class="home">
-            <img class="btn" src="./img/home.png">
-        </button>
+        <img class="medal" src="./img/You Tried1.png">
+        <div class="scoreText">
+        </div>
+        <div class="group">
+            <div class="words1"></div>
+            <div class="words2"></div>
+        </div>
+       <div class="buttons">
+        <img class="playAgain" src="./img/playAgain.png">
+        <img class="home"  src="./img/home.png">
+       </div>
     </div>
 
     <audio id="click" src="sound/click.wav"></audio>
