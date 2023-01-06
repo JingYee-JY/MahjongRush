@@ -1,0 +1,161 @@
+.gamePage{
+    gap: 10px;
+}
+
+/*GamePage*/
+.top{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.questionNumber{
+    background-color: white;
+    border-radius: 10px;
+    width: 100px;
+    padding: 2px;
+    color: #194E20;
+    font-size: 30px;
+    margin: auto; 
+    z-index: 15;
+    position: relative;
+}
+
+#operation{
+    width: 85%;
+    background-color: var(--secondary);
+    border-radius: 10px;
+    padding: 0px;
+    padding-bottom: 10px;
+    padding-top: 40px;
+    margin: auto;
+    margin-top: -20px;
+}
+
+#operation img{
+    width: 38%;
+    height: auto;
+}
+
+.sign{
+    margin-left: -30px;
+    margin-right: -30px;
+}
+
+.big{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.options{
+    display: grid;
+    aspect-ratio : 1 / 1;
+    gap: 14px;
+    --width:calc(80%/2 - 7px);
+    grid-template-columns: repeat(2, var(--width));
+    grid-template-rows: repeat(2,  var(--width));
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn1,.btn2,.btn3,.btn4{
+    position: relative;
+    width: var(--fullwidth);
+    height: var(--fullwidth);
+}
+.btn1 img, .btn2 img, .btn3 img, .btn4 img{
+    position: relative;
+    width: var(--fullwidth);
+    z-index: 10;
+}
+
+/*PopUp*/
+.popUp{
+    background-color: var(--faded);
+}
+
+.background{
+    background-color: white;
+    width: 90%;
+    border: 10px solid var(--secondary);
+    border-radius: 15px;
+    font-weight: 300;
+    text-align: center;
+    padding: 20px;
+    font-size: 32px;
+    color: #433836;
+}
+
+.mark{
+    width: 15%;
+    margin-bottom: -50px;
+    height: auto;
+    z-index: 25;
+}
+
+.words{
+    font-weight: 500;
+    font-size: 60px;
+    padding-bottom: 5px;
+}
+
+.correctAnswer{
+    width: 50%;
+    padding: 10px 0px;
+}
+
+.next{
+    margin-top: -55px;
+    height: auto;
+}
+
+/*ipad*/
+@media screen and (min-width:768px) and (max-width:1023px) {
+    /*GamePage*/
+    .gamePage{
+        gap: 30px;
+    }
+
+    .top{
+        margin-top: 70px;
+    }
+
+    .questionNumber {
+        width: 150px;
+        color: #194E20;
+        font-size: 70px;
+        margin-bottom: -40px;
+    }
+    
+    #operation{
+        width: 90%;
+        padding-bottom: 20px;
+    }
+
+    #operation img{
+        width: 35%;
+    }
+
+    .big {
+        font-size: 50px;
+    }
+
+    /*PopUp*/
+    .mark {
+        margin-bottom: -80px;
+    }
+
+    .background{
+        font-size: 50px;
+        padding: 40px;
+    }
+
+    .words{
+        font-size: 100px;
+    }
+
+    .next {
+        margin-top: -80px;
+    }
+}

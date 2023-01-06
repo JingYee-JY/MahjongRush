@@ -1,20 +1,25 @@
-const startButton = document.querySelector(".startGame");
 const start = document.querySelector(".start");
+const easy = document.querySelector(".easy");
+const normal = document.querySelector(".normal");
+const hard = document.querySelector(".hard");
+const startGame = document.querySelector(".startGame");
+const next = document.querySelector(".next");
+const again = document.querySelector(".again")
+const home = document.querySelector(".home")
+
+const startPage = document.querySelector(".startPage");
+const selectionPage = document.querySelector(".selectionPage");
 const instructionPage = document.querySelector(".instructionPage");
-const select = document.querySelector(".selection");
-const playGame = document.querySelector(".playGame");
-const plusButton = document.querySelector(".plusGame");
-const minusButton = document.querySelector(".minusGame");
-const mixedButton = document.querySelector(".mixedGame");
-const plus = document.querySelector(".game");
+const gamePage = document.querySelector(".gamePage");
+const popUp = document.querySelector(".popUp");
+const finalPage = document.querySelector(".finalPage");
+
 const correct = document.querySelector(".correct");
 const wrong = document.querySelector(".wrong");
-const final = document.querySelector(".final");
 const medal = document.querySelector(".medal")
 const words1 = document.querySelector(".words1")
 const words2 = document.querySelector(".words2")
 const scoreText = document.querySelector(".scoreText")
-const playAgain = document.querySelector(".playAgain")
 const operation = document.getElementById("operation");
 const encourageWords = document.querySelector(".words");
 const mark = document.querySelector(".mark");
@@ -23,10 +28,8 @@ const ans1 = document.querySelector(".btn1");
 const ans2 = document.querySelector(".btn2");
 const ans3 = document.querySelector(".btn3");
 const ans4 = document.querySelector(".btn4");
-const next = document.querySelector(".next");
-const popUp = document.querySelector(".popUp");
 const questionNumber = document.querySelector(".questionNumber");
-const homeButton = document.querySelector(".home")
+
 
 const clickSound = document.getElementById("click")
 const clap = document.getElementById("clap")
@@ -209,8 +212,8 @@ function Question(){
     let pass = totalQuestion /2;
     if(current == totalQuestion){
         console.log(score)
-        final.classList.remove("hide")
-        plus.classList.add("hide")
+        finalPage.classList.remove("hide")
+        gamePage.classList.add("hide")
         let starScore = totalQuestion / 5;
         if(score == totalQuestion){
             clap.currentTime = 0
@@ -330,20 +333,20 @@ function Question(){
     if(plusQuestions == true){
         operation.innerHTML = `
     <img src="${image1}"/>
-    <img src="./img/+.png"/>
+    <img class="sign" src="./img/+.png"/>
     <img src="${image2}"/>`
     }
     else if(minusQuestions == true){
         operation.innerHTML = `
         <img src="${image1}"/>
-        <img src="./img/-.png"/>
+        <img class="sign" src="./img/-.png"/>
         <img src="${image2}"/>`
         if(correctAnswer < 0){
             console.log("swap")
             correctAnswer = window.number2 - window.number1;
             operation.innerHTML = `
             <img src="${image2}"/>
-            <img src="./img/-.png"/>
+            <img class="sign" src="./img/-.png"/>
             <img src="${image1}"/>`
         }
     }
@@ -351,20 +354,20 @@ function Question(){
         if(sign == 1){
         operation.innerHTML = `
             <img src="${image1}"/>
-            <img src="./img/+.png"/>
+            <img class="sign" src="./img/+.png"/>
             <img src="${image2}"/>`
     }
         if(sign == 2){
             operation.innerHTML = `
                 <img src="${image1}"/>
-                <img src="./img/-.png"/>
+                <img class="sign" src="./img/-.png"/>
                 <img src="${image2}"/>`
         }
         if(correctAnswer < 0){
             correctAnswer = window.number2 - window.number1;
             operation.innerHTML = `
             <img src="${image2}"/>
-            <img src="./img/-.png"/>
+            <img class="sign" src="./img/-.png"/>
             <img src="${image1}"/>`
         }
     }
@@ -422,14 +425,14 @@ function Question(){
     }
 }
 
-startButton.addEventListener("click", () => {
+start.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
-      start.classList.add("hide")
-      select.classList.remove("hide")
+        startPage.classList.add("hide")
+        selectionPage.classList.remove("hide")
     }, 200);
 })
-plusButton.addEventListener("click", () => {
+easy.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
         showInstruction();
@@ -437,7 +440,7 @@ plusButton.addEventListener("click", () => {
         began()
     }, 200);
 })
-minusButton.addEventListener("click", () => {
+normal.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
         showInstruction();
@@ -445,7 +448,7 @@ minusButton.addEventListener("click", () => {
         began()
     }, 200);
 })
-mixedButton.addEventListener("click", () => {
+hard.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
         showInstruction();
@@ -453,7 +456,7 @@ mixedButton.addEventListener("click", () => {
         began()
     }, 200);
 })
-playGame.addEventListener("click", () => {
+startGame.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
         instructionPage.classList.add("hide");
@@ -468,18 +471,18 @@ next.addEventListener("click", () => {
         Question()
     }, 200);
 })
-playAgain.addEventListener("click", () => {
+again.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
-        start.classList.remove("hide")
-        final.classList.add("hide")
+        startPage.classList.remove("hide")
+        finalPage.classList.add("hide")
         plusQuestions = false;
         minusQuestions = false;
         mixedQuestions = false;
     }, 200);
 })
 
-homeButton.addEventListener("click", () => {
+home.addEventListener("click", () => {
     playClickSound()
     let delay = setTimeout(() => {
       location.assign('https://gimme.sg/activations/dementia/');
@@ -488,8 +491,8 @@ homeButton.addEventListener("click", () => {
 
 function showInstruction(){
     instructionPage.classList.remove("hide")
-    select.classList.add("hide")
-    plus.classList.remove("hide")
+    selectionPage.classList.add("hide")
+    gamePage.classList.remove("hide")
 }
 
 function began(){
