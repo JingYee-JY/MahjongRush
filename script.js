@@ -229,7 +229,7 @@ function Question(){
             completed.play()
             if(score < totalQuestion && score >= totalQuestion - starScore) // score < total && score >= 8
                 medal.src = "./img/Well Done.png"
-            if(score < totalQuestion - starScore && score >= totalQuestion - starScore - starScore) // score < 8 && score >= 6
+            else if(score < totalQuestion - starScore && score >= (totalQuestion - starScore - starScore)) // score < 8 && score >= 6
                 medal.src = "./img/Well Done1.png"
             else
                 medal.src = "./img/You Tried.png"
